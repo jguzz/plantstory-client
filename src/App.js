@@ -4,7 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";
 import NewPost from "./components/create/NewPost";
-import NewStory from "./components/create/NewStory";
+import CreateContainer from "./components/create/CreateContainer";
 import MainFeed from "./components/home/MainFeed";
 import Navbar from "./components/nav/Navbar";
 import BottomNav from "./components/nav/BottomNav";
@@ -20,7 +20,8 @@ const STORY_URL = `${BASE_URL}/stories`
 class App extends React.Component {
   state = {
     users: [],
-    plants: []
+    plants: [],
+    stories: []
   }
   //Fetching
   componentDidMount() {
@@ -39,7 +40,6 @@ class App extends React.Component {
     this.fetch(STORY_URL, 'stories')
   }
   render() {
-    console.log(this.state)
     return (
       <div>
         <Navbar />
@@ -47,8 +47,8 @@ class App extends React.Component {
           <Route path="/login" render={() => <Login />} />
           <Route path="/signup" render={() => <Signup />} />
           <Route path="/newPost" render={() => <NewPost />} />
-          <Route path="/newStory" render={() => <NewStory />} />
-          <Route path="/mainfeed" render={() => <MainFeed />} />
+          <Route path="/create" render={() => <CreateContainer />} />
+          <Route path="/mainfeed" render={() => <MainFeed stories={this.state.stories}/>} />
           <Route path="/profile" render={() => <Profile />} />
         </Switch>
         <BottomNav />

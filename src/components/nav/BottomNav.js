@@ -11,7 +11,7 @@ function BottomNav() {
   return (
     <><BottomNavigation position="fixed" style={{bottom: 0, top: 'auto'}}>
 	<BottomNavigationAction component={Link} to="/mainfeed" label="Home" value="Home" icon={<Home/>} />
-	<BottomNavigationAction  component={Link} to="/newStory" label="Create" value="Create" icon={<AddCircleIcon/>}  />
+	<BottomNavigationAction  component={Link} to="/create" label="Create" value="Create" icon={<AddCircleIcon/>}  />
 	<BottomNavigationAction  component={Link} to="/profile" label="Profile" value="Profile" icon={<LocalFloristIcon/>}  />
   </BottomNavigation></>
   );
