@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 // material ui
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
@@ -16,6 +17,10 @@ function Login() {
 
         <input type="submit"></input>
       </form>
+      <Link to="/signup" >
+
+      Dont have an account? Sign up here!
+      </Link>
     </>
   );
 }
