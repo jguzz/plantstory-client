@@ -7,12 +7,13 @@ import NewPost from './components/create/NewPost'
 import NewStory from './components/create/NewStory'
 import MainFeed from './components/home/MainFeed'
 import Navbar from './components/nav/Navbar'
+import BottomNav from './components/nav/BottomNav'
 import Profile from './components/profile/Profile'
 
 
 function App() {
   return (
-    <>
+    <div>
     <Navbar/>
     <Switch>
       <Route path="/login" render={() => <Login/>} />
@@ -22,7 +23,8 @@ function App() {
       <Route path="/mainfeed" render={() => <MainFeed/>}/>
       <Route path="/profile" render={() => <Profile/>}/>
     </Switch>
-    </>
+    <BottomNav/>
+    </div>
   );
 }
 
