@@ -4,12 +4,14 @@ import { Route, Switch, Link } from "react-router-dom";
 import NewStory from './NewStory'
 import NewPost from './NewPost'
 
+import Button from '@material-ui/core/Button'
+
 
 function CreateContainer() {
   return (
-    <>CreateContainer
-	<Link to="/create/story">Create a Story</Link>
-	<Link to="/create/post">Create a Post</Link>
+    <>
+	<Button component={Link} to="/create/story">Create a Story</Button>
+	<Button component={Link} to="/create/post">Create a Post</Button>
      <Switch>
 		 <Route path="/create/story" render={() => <NewStory/>}/>
 		 <Route path="/create/post" render={() => <NewPost/>}/>
