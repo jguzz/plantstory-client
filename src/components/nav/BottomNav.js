@@ -1,9 +1,12 @@
+//Imports
 import React from 'react';
+import { Link } from 'react-router-dom';
+//Material UI
 import {BottomNavigation, BottomNavigationAction} from '@material-ui/core'
 import Home from '@material-ui/icons/Home'
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import LocalFloristIcon from '@material-ui/icons/LocalFlorist';
-import { Link  } from 'react-router-dom';
+
 function BottomNav() {
   return (
     <><BottomNavigation position="fixed" style={{bottom: 0, top: 'auto'}}>
