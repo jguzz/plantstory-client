@@ -16,12 +16,14 @@ const PLANT_URL = `${BASE_URL}/plants`
 const LIKE_URL = `${BASE_URL}/likes`
 const POST_URL = `${BASE_URL}/posts`
 const STORY_URL = `${BASE_URL}/stories`
+const COLLECTION_URL = `${BASE_URL}/collections`
 
 class App extends React.Component {
   state = {
     users: [],
     plants: [],
-    stories: []
+    stories: [],
+    collections: []
   }
   //Fetching
   componentDidMount() {
@@ -38,6 +40,7 @@ class App extends React.Component {
     this.fetch(LIKE_URL, 'likes')
     this.fetch(POST_URL, 'posts')
     this.fetch(STORY_URL, 'stories')
+    this.fetch(COLLECTION_URL, 'collections')
   }
   render() {
     return (
