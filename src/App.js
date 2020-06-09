@@ -20,15 +20,19 @@ const COLLECTION_URL = `${BASE_URL}/collections`
 
 class App extends React.Component {
   state = {
-    // ========= Seeded through the backend api =============
+    // ==== Seeded through the backend api ====
     users: [],
     plants: [],
     stories: [],
     collections: [],
     likes: [],
-    posts: []
+    posts: [],
+    // ==== Auth ==== 
+    username: '',
+    password: ''
   }
-  //Fetching
+
+  // ==== Fetching ====
   componentDidMount() {
     this.fetchAll()
   }
@@ -45,12 +49,25 @@ class App extends React.Component {
     this.fetch(STORY_URL, 'stories')
     this.fetch(COLLECTION_URL, 'collections')
   }
+
+  // ========== FORM ===========
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault()
+    console.log('submit????', this.state.password, this.state.username)
+  }
+
   render() {
     return (
       <div>
         <Navbar />
         <Switch>
-          <Route path="/login" render={() => <Login />} />
+          <Route path="/login" render={() => <Login handleSubmit={this.handleSubmit} handleChange={this.handleChange} />} />
           <Route path="/signup" render={() => <Signup />} />
           <Route path="/newPost" render={() => <NewPost />} />
           <Route path="/create" render={() => <CreateContainer />} />
