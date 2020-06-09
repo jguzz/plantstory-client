@@ -17,6 +17,7 @@ const LIKE_URL = `${BASE_URL}/likes`
 const POST_URL = `${BASE_URL}/posts`
 const STORY_URL = `${BASE_URL}/stories`
 const COLLECTION_URL = `${BASE_URL}/collections`
+const LOGIN_URL = `${BASE_URL}/login`
 
 class App extends React.Component {
   state = {
@@ -29,18 +30,35 @@ class App extends React.Component {
     posts: [],
     // ==== Auth ==== 
     username: '',
-    password: ''
+    password: '',
+    currentUser: null,
+    currentAvatar: null
   }
 
   // ==== Fetching ====
   componentDidMount() {
     this.fetchAll()
   }
+  // Post helper method
+  post = (url, user) => {
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(user)
+    })
+    .then(res => res.json())
+    .then(data => console.log(data))
+  }
+  // Fetch helper method
   fetch = (url, name) => {
     fetch(url)
     .then(res => res.json())
     .then(data => this.setState({[name]: data}))
   }
+  // Fetches all date from api, and seeds it to state.
   fetchAll = () => {
     this.fetch(USER_URL, 'users')
     this.fetch(PLANT_URL, 'plants')
@@ -51,15 +69,28 @@ class App extends React.Component {
   }
 
   // ========== FORM ===========
+  // Handle change helper method
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value
     })
   }
-
+  // Handle submit helper method
   handleSubmit = (e) => {
     e.preventDefault()
-    console.log('submit????', this.state.password, this.state.username)
+    console.log('in handle submit.')
+
+    const user = {
+      username: this.state.username,
+      password: this.state.password
+    }
+
+    this.post(LOGIN_URL, user)
+  }
+
+  // ==== Auth ====
+  setCurrentUser = () => {
+    
   }
 
   render() {
