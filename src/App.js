@@ -20,10 +20,13 @@ const COLLECTION_URL = `${BASE_URL}/collections`
 
 class App extends React.Component {
   state = {
+    // ========= Seeded through the backend api =============
     users: [],
     plants: [],
     stories: [],
-    collections: []
+    collections: [],
+    likes: [],
+    posts: []
   }
   //Fetching
   componentDidMount() {
