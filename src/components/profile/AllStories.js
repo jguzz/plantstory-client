@@ -3,7 +3,8 @@ import Story from '../story/Story'
 
 function AllStories({stories}) {
   return (
-    <>{stories.map(story => <Story {...story}/>)}</>
+     <> <h3>All Stories</h3>
+  {stories.map(story => <Story {...story}/>)}</>
   );
 }
 

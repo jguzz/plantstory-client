@@ -2,9 +2,9 @@ import React from "react";
 import { Route, Switch, Link } from "react-router-dom";
 import User from "./User";
 import AllStories from "./AllStories";
-import CollectionList from "./CollectionList";
+import CollectionList from "../collection/CollectionList";
 import Button from "@material-ui/core/Button";
-function Profile({stories}) {
+function Profile({stories, collections}) {
   return (
     <>
       <User />
@@ -16,7 +16,7 @@ function Profile({stories}) {
       </Button>
       <Switch>
         <Route path="/profile/stories" render={() => <AllStories stories={stories} />} />
-        <Route path="/profile/collection_list" render={() => <CollectionList />} />
+        <Route path="/profile/collection_list" render={() => <CollectionList collections={collections} />} />
       </Switch>
     </>
   );

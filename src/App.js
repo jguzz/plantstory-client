@@ -52,7 +52,7 @@ class App extends React.Component {
           <Route path="/newPost" render={() => <NewPost />} />
           <Route path="/create" render={() => <CreateContainer />} />
           <Route path="/mainfeed" render={() => <MainFeed stories={this.state.stories}/>} />
-          <Route path="/profile" render={() => <Profile stories={this.state.stories} />} />
+          <Route path="/profile" render={() => <Profile stories={this.state.stories} collections={this.state.collections} />} />
         </Switch>
         <BottomNav />
       </div>
