@@ -1,8 +1,14 @@
 import React from 'react';
+import Post from './Post'
 
-function Story() {
+function Story({acquiredOn,collection_id,created_at,id,nickname,owned,plant_id}) {
   return (
-    <>Story</>
+    <>
+    <p>Story</p>
+    <p>nickname: {nickname}</p>
+    <p>Acquired on: {acquiredOn}</p>  
+    <Post/>
+    </>
   );
 }
 

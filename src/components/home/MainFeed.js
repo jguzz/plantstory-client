@@ -1,8 +1,11 @@
 import React from 'react';
+import Story from '../story/Story'
 
-function MainFeed() {
+function MainFeed({stories}) {
   return (
-    <>MainFeed</>
+    <>MainFeed
+      {stories.map(story => <Story {...story}/>)}
+    </>
   );
 }
 

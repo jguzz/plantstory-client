@@ -1,8 +1,9 @@
 import React from 'react';
+import Story from '../story/Story'
 
-function AllStories() {
+function AllStories({stories}) {
   return (
-    <>AllStories</>
+    <>{stories.map(story => <Story {...story}/>)}</>
   );
 }
 
