@@ -40,8 +40,8 @@ class App extends React.Component {
     this.fetchAll()
   }
   // Post helper method
-  post = (url, user) => {
-    fetch(url, {
+ post = (url, user) => {
+     return( fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -49,8 +49,7 @@ class App extends React.Component {
       },
       body: JSON.stringify(user)
     })
-    .then(res => res.json())
-    .then(data => console.log(data))
+    .then(res => res.json()))
   }
   // Fetch helper method
   fetch = (url, name) => {
@@ -86,11 +85,15 @@ class App extends React.Component {
     }
 
     this.post(LOGIN_URL, user)
+    .then(data => this.setCurrentUser(data))
   }
 
   // ==== Auth ====
-  setCurrentUser = () => {
-    
+  setCurrentUser = (data) => {
+    this.setState({
+      currentUser: data.user,
+      currentAvatar: data.avatar
+    })
   }
 
   render() {
