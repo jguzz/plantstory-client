@@ -33,9 +33,19 @@ class App extends React.Component {
     password: '',
     currentUser: null,
     currentAvatar: null,
-    // ==== Create Collection ====
+    // ==== Create ====
+    // Collection
     collectionName: '',
-    collectionDescription: ''
+    collectionDescription: '',
+    // Story
+    plantNickname: '',
+    acquiredOn: '',
+    commonName: '',
+    latinName: '',
+    // Post
+    photo: '',
+    caption: '',
+    collectionID: null
   }
 
   // ==== Fetching ====
@@ -107,9 +117,16 @@ class App extends React.Component {
     this.post(COLLECTION_URL, newCollection)
     .then(this.setState({collections: [...collections, newCollection]}))
   }
+  createStorySubmit = (e) => {
+    e.preventDefault()
+    const {plantNickname, acquiredOn, commonName, latinName, photo, caption, collectionID} = this.state 
+    const newPlant = {common_name: commonName, latin_name: latinName}
+    this.post(PLANT_URL, newPlant).then(console.log)
+    // const newStory = {collection_id: collectionID }
+  }
 
   render() {
-    const {currentUser,currentAvatar, collectionName, collectionDescription} = this.state
+    const {currentUser,currentAvatar, collectionName, collectionDescription, plantNickname, acquiredOn, commonName, latinName, photo, caption, collectionID} = this.state
     return (
       <div>
         <Navbar />
@@ -117,7 +134,7 @@ class App extends React.Component {
           <Route path="/login" render={() => <Login handleLoginSubmit={this.handleLoginSubmit} handleChange={this.handleChange} />} />
           <Route path="/signup" render={() => <Signup />} />
           <Route path="/newPost" render={() => <NewPost />} />
-          <Route path="/create" render={() => <CreateContainer createCollectionSubmit={this.createCollectionSubmit} handleChange={this.handleChange} collectionName={collectionName} collectionDescription={collectionDescription} currentUser={currentUser}/>} />
+          <Route path="/create" render={() => <CreateContainer plantNickname={plantNickname} acquiredOn={acquiredOn} commonName={commonName} latinName={latinName} photo={photo} caption={caption} collectionID={collectionID} createCollectionSubmit={this.createCollectionSubmit} handleChange={this.handleChange} collectionName={collectionName} collectionDescription={collectionDescription} currentUser={currentUser}/>} />
           <Route path="/mainfeed" render={() => <MainFeed stories={this.state.stories}/>} />
           <Route path="/profile" render={() => <Profile stories={this.state.stories} collections={this.state.collections} currentUser={currentUser} currentAvatar={currentAvatar}/>} />
         </Switch>
