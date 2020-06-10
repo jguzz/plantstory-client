@@ -39,7 +39,7 @@ class App extends React.Component {
     collectionDescription: '',
     // Story
     plantNickname: '',
-    acquiredOn: '',
+    acquiredOn: null,
     commonName: '',
     latinName: '',
     // Post
@@ -119,10 +119,13 @@ class App extends React.Component {
   }
   createStorySubmit = (e) => {
     e.preventDefault()
-    const {plantNickname, acquiredOn, commonName, latinName, photo, caption, collectionID} = this.state 
-    const newPlant = {common_name: commonName, latin_name: latinName}
-    this.post(PLANT_URL, newPlant).then(console.log)
-    // const newStory = {collection_id: collectionID }
+    const {plantNickname, acquiredOn, commonName, latinName, photo, caption, collectionID, plants} = this.state 
+    // const newPlant = {common_name: commonName, latin_name: latinName}
+    // const p =  this.post(PLANT_URL, newPlant).then(plant => this.setState({plants: [...plants, plant]}))
+    // console.log(p)
+    // console.log(this.state.plants)
+    // const plantID = plants.slice(-1)[0].id
+    //  const newStory =  {collection_id: collectionID, plant_id:  plantID, nickname: plantNickname, acquiredOn: acquiredOn, owned: true }
   }
 
   render() {
@@ -134,7 +137,7 @@ class App extends React.Component {
           <Route path="/login" render={() => <Login handleLoginSubmit={this.handleLoginSubmit} handleChange={this.handleChange} />} />
           <Route path="/signup" render={() => <Signup />} />
           <Route path="/newPost" render={() => <NewPost />} />
-          <Route path="/create" render={() => <CreateContainer plantNickname={plantNickname} acquiredOn={acquiredOn} commonName={commonName} latinName={latinName} photo={photo} caption={caption} collectionID={collectionID} createCollectionSubmit={this.createCollectionSubmit} handleChange={this.handleChange} collectionName={collectionName} collectionDescription={collectionDescription} currentUser={currentUser}/>} />
+          <Route path="/create" render={() => <CreateContainer createStorySubmit={this.createStorySubmit} plantNickname={plantNickname} acquiredOn={acquiredOn} commonName={commonName} latinName={latinName} photo={photo} caption={caption} collectionID={collectionID} createCollectionSubmit={this.createCollectionSubmit} handleChange={this.handleChange} collectionName={collectionName} collectionDescription={collectionDescription} currentUser={currentUser}/>} />
           <Route path="/mainfeed" render={() => <MainFeed stories={this.state.stories}/>} />
           <Route path="/profile" render={() => <Profile stories={this.state.stories} collections={this.state.collections} currentUser={currentUser} currentAvatar={currentAvatar}/>} />
         </Switch>
