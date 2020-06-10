@@ -7,10 +7,10 @@ import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 
-function Login({handleChange, handleSubmit}) {
+function Login({handleChange, handleLoginSubmit}) {
   return (
     <>
-      <form onChange={handleChange} onSubmit={(e) => handleSubmit(e)}>
+      <form onChange={handleChange} onSubmit={(e) => handleLoginSubmit(e)}>
         <Typography variant="h5">Login</Typography>
         <label>
           <TextField label="username" name="username" type="text" />

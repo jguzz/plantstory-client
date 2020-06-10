@@ -32,7 +32,10 @@ class App extends React.Component {
     username: '',
     password: '',
     currentUser: null,
-    currentAvatar: null
+    currentAvatar: null,
+    // ==== Create Collection ====
+    collectionName: '',
+    collectionDescription: ''
   }
 
   // ==== Fetching ====
@@ -75,7 +78,7 @@ class App extends React.Component {
     })
   }
   // Handle submit helper method
-  handleSubmit = (e) => {
+  handleLoginSubmit = (e) => {
     e.preventDefault()
     console.log('in handle submit.')
 
@@ -97,15 +100,15 @@ class App extends React.Component {
   }
 
   render() {
-    const {currentUser,currentAvatar} = this.state
+    const {currentUser,currentAvatar, collectionName, collectionDescription} = this.state
     return (
       <div>
         <Navbar />
         <Switch>
-          <Route path="/login" render={() => <Login handleSubmit={this.handleSubmit} handleChange={this.handleChange} />} />
+          <Route path="/login" render={() => <Login handleLoginSubmit={this.handleLoginSubmit} handleChange={this.handleChange} />} />
           <Route path="/signup" render={() => <Signup />} />
           <Route path="/newPost" render={() => <NewPost />} />
-          <Route path="/create" render={() => <CreateContainer />} />
+          <Route path="/create" render={() => <CreateContainer collectionName={collectionName} collectionDescription={collectionDescription} currentUser={currentUser}/>} />
           <Route path="/mainfeed" render={() => <MainFeed stories={this.state.stories}/>} />
           <Route path="/profile" render={() => <Profile stories={this.state.stories} collections={this.state.collections} currentUser={currentUser} currentAvatar={currentAvatar}/>} />
         </Switch>
