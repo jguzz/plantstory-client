@@ -15,6 +15,7 @@ function CreateContainer({
 }) {
   return (
     <>
+	{currentUser ? <>
       <Button component={Link} to="/create/collection">
         Create a Collection
       </Button>
@@ -23,7 +24,10 @@ function CreateContainer({
       </Button>
       <Button component={Link} to="/create/post">
         Create a Post
-      </Button>
+	  </Button> </>
+	  : 
+	  <p>Please sign in to create!</p>
+	  }
       <Switch>
         <Route path="/create/collection" render={() => <NewCollection />} />
         <Route path="/create/story" render={() => <NewStory />} />
