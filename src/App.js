@@ -17,26 +17,47 @@ const LIKE_URL = `${BASE_URL}/likes`
 const POST_URL = `${BASE_URL}/posts`
 const STORY_URL = `${BASE_URL}/stories`
 const COLLECTION_URL = `${BASE_URL}/collections`
+const LOGIN_URL = `${BASE_URL}/login`
 
 class App extends React.Component {
   state = {
-    // ========= Seeded through the backend api =============
+    // ==== Seeded through the backend api ====
     users: [],
     plants: [],
     stories: [],
     collections: [],
     likes: [],
-    posts: []
+    posts: [],
+    // ==== Auth ==== 
+    username: '',
+    password: '',
+    currentUser: null,
+    currentAvatar: null
   }
-  //Fetching
+
+  // ==== Fetching ====
   componentDidMount() {
     this.fetchAll()
   }
+  // Post helper method
+ post = (url, user) => {
+     return( fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(user)
+    })
+    .then(res => res.json()))
+  }
+  // Fetch helper method
   fetch = (url, name) => {
     fetch(url)
     .then(res => res.json())
     .then(data => this.setState({[name]: data}))
   }
+  // Fetches all date from api, and seeds it to state.
   fetchAll = () => {
     this.fetch(USER_URL, 'users')
     this.fetch(PLANT_URL, 'plants')
@@ -45,17 +66,48 @@ class App extends React.Component {
     this.fetch(STORY_URL, 'stories')
     this.fetch(COLLECTION_URL, 'collections')
   }
+
+  // ========== FORM ===========
+  // Handle change helper method
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+  // Handle submit helper method
+  handleSubmit = (e) => {
+    e.preventDefault()
+    console.log('in handle submit.')
+
+    const user = {
+      username: this.state.username,
+      password: this.state.password
+    }
+
+    this.post(LOGIN_URL, user)
+    .then(data => this.setCurrentUser(data))
+  }
+
+  // ==== Auth ====
+  setCurrentUser = (data) => {
+    this.setState({
+      currentUser: data.user,
+      currentAvatar: data.avatar
+    })
+  }
+
   render() {
+    const {currentUser,currentAvatar} = this.state
     return (
       <div>
         <Navbar />
         <Switch>
-          <Route path="/login" render={() => <Login />} />
+          <Route path="/login" render={() => <Login handleSubmit={this.handleSubmit} handleChange={this.handleChange} />} />
           <Route path="/signup" render={() => <Signup />} />
           <Route path="/newPost" render={() => <NewPost />} />
           <Route path="/create" render={() => <CreateContainer />} />
           <Route path="/mainfeed" render={() => <MainFeed stories={this.state.stories}/>} />
-          <Route path="/profile" render={() => <Profile stories={this.state.stories} collections={this.state.collections} />} />
+          <Route path="/profile" render={() => <Profile stories={this.state.stories} collections={this.state.collections} currentUser={currentUser} currentAvatar={currentAvatar}/>} />
         </Switch>
         <BottomNav />
       </div>
