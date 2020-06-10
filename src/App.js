@@ -43,14 +43,14 @@ class App extends React.Component {
     this.fetchAll()
   }
   // Post helper method
- post = (url, user) => {
+ post = (url, data) => {
      return( fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       },
-      body: JSON.stringify(user)
+      body: JSON.stringify(data)
     })
     .then(res => res.json()))
   }
@@ -99,6 +99,15 @@ class App extends React.Component {
     })
   }
 
+  // ==== Create ====
+  createCollectionSubmit = (e) => {
+    e.preventDefault()
+    const {currentUser, collectionDescription, collectionName, collections} = this.state
+    const newCollection = {user_id: currentUser.id, description: collectionDescription, name: collectionName}
+    this.post(COLLECTION_URL, newCollection)
+    .then(this.setState({collections: [...collections, newCollection]}))
+  }
+
   render() {
     const {currentUser,currentAvatar, collectionName, collectionDescription} = this.state
     return (
@@ -108,7 +117,7 @@ class App extends React.Component {
           <Route path="/login" render={() => <Login handleLoginSubmit={this.handleLoginSubmit} handleChange={this.handleChange} />} />
           <Route path="/signup" render={() => <Signup />} />
           <Route path="/newPost" render={() => <NewPost />} />
-          <Route path="/create" render={() => <CreateContainer collectionName={collectionName} collectionDescription={collectionDescription} currentUser={currentUser}/>} />
+          <Route path="/create" render={() => <CreateContainer createCollectionSubmit={this.createCollectionSubmit} handleChange={this.handleChange} collectionName={collectionName} collectionDescription={collectionDescription} currentUser={currentUser}/>} />
           <Route path="/mainfeed" render={() => <MainFeed stories={this.state.stories}/>} />
           <Route path="/profile" render={() => <Profile stories={this.state.stories} collections={this.state.collections} currentUser={currentUser} currentAvatar={currentAvatar}/>} />
         </Switch>

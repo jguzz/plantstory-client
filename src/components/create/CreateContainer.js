@@ -12,6 +12,8 @@ function CreateContainer({
   currentUser,
   collectionName,
   collectionDescription,
+  handleChange,
+  createCollectionSubmit
 }) {
   return (
     <>
@@ -29,7 +31,7 @@ function CreateContainer({
 	  <p>Please sign in to create!</p>
 	  }
       <Switch>
-        <Route path="/create/collection" render={() => <NewCollection />} />
+        <Route path="/create/collection" render={() => <NewCollection collectionName={collectionName} collectionDescription={collectionDescription} handleChange={handleChange} createCollectionSubmit={createCollectionSubmit}/>} />
         <Route path="/create/story" render={() => <NewStory />} />
         <Route path="/create/post" render={() => <NewPost />} />
       </Switch>
