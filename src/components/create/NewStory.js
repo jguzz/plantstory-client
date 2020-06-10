@@ -13,8 +13,6 @@ function NewStory({ handleChange, plantNickname, acquiredOn, commonName, latinNa
       <TextField value={acquiredOn} label="aqcuired on" name="aquiredOn" type="date" />
       <TextField value={commonName} label="common name" name="commonName" type="text" />
       <TextField value={latinName} label="latin name" name="latinName" type="text" />
-      <TextField value={photo} label="photo" name="photo" type="text" />
-      <TextField value={caption} label="caption" name="caption" type="text" />
       <TextField value={collectionID} label="collectionID" name="collectionID" type="text" />
     </label>
 

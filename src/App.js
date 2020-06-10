@@ -9,6 +9,7 @@ import MainFeed from "./components/home/MainFeed";
 import Navbar from "./components/nav/Navbar";
 import BottomNav from "./components/nav/BottomNav";
 import Profile from "./components/profile/Profile";
+import { common } from "@material-ui/core/colors";
 
 const BASE_URL = 'http://localhost:3000'
 const USER_URL = `${BASE_URL}/users`
@@ -42,10 +43,11 @@ class App extends React.Component {
     acquiredOn: null,
     commonName: '',
     latinName: '',
+    collectionID: null,
     // Post
     photo: '',
     caption: '',
-    collectionID: null
+    storyId: null,
   }
 
   // ==== Fetching ====
@@ -119,17 +121,24 @@ class App extends React.Component {
   }
   createStorySubmit = (e) => {
     e.preventDefault()
-    const {plantNickname, acquiredOn, commonName, latinName, photo, caption, collectionID, plants} = this.state 
-    // const newPlant = {common_name: commonName, latin_name: latinName}
-    // const p =  this.post(PLANT_URL, newPlant).then(plant => this.setState({plants: [...plants, plant]}))
-    // console.log(p)
-    // console.log(this.state.plants)
-    // const plantID = plants.slice(-1)[0].id
-    //  const newStory =  {collection_id: collectionID, plant_id:  plantID, nickname: plantNickname, acquiredOn: acquiredOn, owned: true }
+    const {plantNickname, acquiredOn, commonName, latinName, collectionID,stories} = this.state 
+    const newStory = {collection_id: collectionID, nickname: plantNickname, acquiredOn: acquiredOn, owned: true, common_name: commonName, latin_name: latinName}
+     this.post(STORY_URL, newStory).then(story => this.setState({stories: [...stories, story]}))
   }
+  createPostSubmit = (e) => {
+    e.preventDefault() 
+    const {storyId, caption, posts} = this.state
+    const newPost = {story_id: storyId, caption: caption}
+    this.post(POST_URL, newPost).then(post => this.setState({posts: [...posts, newPost]}))
+  } 
+
+// ==== Profile ====
+collectionClick = (id) => {
+  const showCollection = this.state.collections.find(collection => collection.id === id)
+}
 
   render() {
-    const {currentUser,currentAvatar, collectionName, collectionDescription, plantNickname, acquiredOn, commonName, latinName, photo, caption, collectionID} = this.state
+    const {currentUser,currentAvatar, collectionName, collectionDescription, plantNickname, acquiredOn, commonName, latinName, photo, caption, collectionID, storyId} = this.state
     return (
       <div>
         <Navbar />
@@ -137,7 +146,7 @@ class App extends React.Component {
           <Route path="/login" render={() => <Login handleLoginSubmit={this.handleLoginSubmit} handleChange={this.handleChange} />} />
           <Route path="/signup" render={() => <Signup />} />
           <Route path="/newPost" render={() => <NewPost />} />
-          <Route path="/create" render={() => <CreateContainer createStorySubmit={this.createStorySubmit} plantNickname={plantNickname} acquiredOn={acquiredOn} commonName={commonName} latinName={latinName} photo={photo} caption={caption} collectionID={collectionID} createCollectionSubmit={this.createCollectionSubmit} handleChange={this.handleChange} collectionName={collectionName} collectionDescription={collectionDescription} currentUser={currentUser}/>} />
+          <Route path="/create" render={() => <CreateContainer createPostSubmit={this.createPostSubmit} createStorySubmit={this.createStorySubmit} plantNickname={plantNickname} acquiredOn={acquiredOn} commonName={commonName} latinName={latinName} photo={photo} caption={caption} collectionID={collectionID} createCollectionSubmit={this.createCollectionSubmit} handleChange={this.handleChange} collectionName={collectionName} collectionDescription={collectionDescription} currentUser={currentUser} storyId={storyId}/>} />
           <Route path="/mainfeed" render={() => <MainFeed stories={this.state.stories}/>} />
           <Route path="/profile" render={() => <Profile stories={this.state.stories} collections={this.state.collections} currentUser={currentUser} currentAvatar={currentAvatar}/>} />
         </Switch>
