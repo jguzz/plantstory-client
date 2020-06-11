@@ -4,10 +4,10 @@ import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 
-function NewPost({photo, caption, storyId, handleChange}) {
+function NewPost({photo, caption, storyId, handleChange, createPostSubmit}) {
   return (
     <>
-    <form onChange={handleChange}>
+    <form onChange={handleChange} onSubmit={createPostSubmit}>
     <Typography variant="h5">Create a Post</Typography>
     <label>
       <TextField value={storyId} label="story id" name="storyId" type="text" />
