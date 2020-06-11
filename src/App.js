@@ -150,7 +150,7 @@ class App extends React.Component {
     this.post(POST_URL, newPost)
   .then(data => this.uploadFile(photo, data))
   } 
-  // sends file to active storage in the backend
+  // sends file to active storage in the backend to update post with a photo
   uploadFile = (file,post) => {
     // console.log(file,post)
     const upload = new DirectUpload(file, 'http://localhost:3000/rails/active_storage/direct_uploads')
@@ -166,7 +166,7 @@ class App extends React.Component {
         body: JSON.stringify({post_img: blob.signed_id})
       })
       .then(res => res.json())
-      .then(post => this.setState({posts: [...this.state.posts, post]}))
+      .then(post => this.setState({posts: [...this.state.posts, post]})) 
     })
   }
   
