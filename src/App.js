@@ -148,14 +148,13 @@ class App extends React.Component {
     const {storyId, caption, posts, photo} = this.state
     const newPost = {story_id: storyId, caption: caption}
     this.post(POST_URL, newPost)
-    .then(console.log)
-    // .then(data => this.uploadFile(photo, data))
+  .then(data => this.uploadFile(photo, data))
   } 
   // sends file to active storage in the backend
   uploadFile = (file,post) => {
     const upload = new DirectUpload(file, 'http://localhost:3000/rails/active_storage/direct_uploads')
     upload.create((error,blob) => {
-      error? console.log(error) : this.put(`${BASE_URL}/posts/${post.id}`, {post_img: blob.signed_id})
+      error? console.log(error) : this.put(`${BASE_URL}/posts/${post.id}`, {post_img: blob.checksum})
     })
   }
   
