@@ -152,9 +152,21 @@ class App extends React.Component {
   } 
   // sends file to active storage in the backend
   uploadFile = (file,post) => {
+    // console.log(file,post)
     const upload = new DirectUpload(file, 'http://localhost:3000/rails/active_storage/direct_uploads')
     upload.create((error,blob) => {
-      error? console.log(error) : this.put(`${BASE_URL}/posts/${post.id}`, {post_img: blob.checksum})
+     console.log({post_img: blob.signed_id})
+      error? console.log(error) :
+      fetch(`${BASE_URL}/posts/${post.id}`,{
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({post_img: blob.signed_id})
+      })
+      .then(res => res.json())
+      .then(post => this.setState({posts: [...this.state.posts, post]}))
     })
   }
   
