@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
+import {DirectUpload} from 'activestorage'
 // Components
 import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";
@@ -45,7 +46,7 @@ class App extends React.Component {
     latinName: '',
     collectionID: null,
     // Post
-    photo: '',
+    photo: {},
     caption: '',
     storyId: null,
   }
@@ -66,6 +67,17 @@ class App extends React.Component {
     })
     .then(res => res.json()))
   }
+  // Put helper method
+  put = (url, data) => {
+    return(fetch(url,{
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(data)
+    }).then(res => res.json))
+  }
   // Fetch helper method
   fetch = (url, name) => {
     fetch(url)
@@ -81,10 +93,13 @@ class App extends React.Component {
     this.fetch(STORY_URL, 'stories')
     this.fetch(COLLECTION_URL, 'collections')
   }
-
+  
   // ========== FORM ===========
   // Handle change helper method
   handleChange = (e) => {
+    e.target.name === 'photo' ?     this.setState({
+      [e.target.name]: e.target.files[0]
+    }) :
     this.setState({
       [e.target.name]: e.target.value
     })
@@ -93,16 +108,16 @@ class App extends React.Component {
   handleLoginSubmit = (e) => {
     e.preventDefault()
     console.log('in handle submit.')
-
+    
     const user = {
       username: this.state.username,
       password: this.state.password
     }
-
+    
     this.post(LOGIN_URL, user)
     .then(data => this.setCurrentUser(data))
   }
-
+  
   // ==== Auth ====
   setCurrentUser = (data) => {
     this.setState({
@@ -112,6 +127,7 @@ class App extends React.Component {
   }
 
   // ==== Create ====
+  // Collection Submit
   createCollectionSubmit = (e) => {
     e.preventDefault()
     const {currentUser, collectionDescription, collectionName, collections} = this.state
@@ -119,24 +135,35 @@ class App extends React.Component {
     this.post(COLLECTION_URL, newCollection)
     .then(this.setState({collections: [...collections, newCollection]}))
   }
+  // Story Submit
   createStorySubmit = (e) => {
     e.preventDefault()
     const {plantNickname, acquiredOn, commonName, latinName, collectionID,stories} = this.state 
     const newStory = {collection_id: collectionID, nickname: plantNickname, acquiredOn: acquiredOn, owned: true, common_name: commonName, latin_name: latinName}
-     this.post(STORY_URL, newStory).then(story => this.setState({stories: [...stories, story]}))
+    this.post(STORY_URL, newStory).then(story => this.setState({stories: [...stories, story]}))
   }
+  // Post Submit
   createPostSubmit = (e) => {
     e.preventDefault() 
-    const {storyId, caption, posts} = this.state
+    const {storyId, caption, posts, photo} = this.state
     const newPost = {story_id: storyId, caption: caption}
-    this.post(POST_URL, newPost).then(post => this.setState({posts: [...posts, newPost]}))
+    this.post(POST_URL, newPost)
+    .then(console.log)
+    // .then(data => this.uploadFile(photo, data))
   } 
-
-// ==== Profile ====
-collectionClick = (id) => {
-  const showCollection = this.state.collections.find(collection => collection.id === id)
-}
-
+  // sends file to active storage in the backend
+  uploadFile = (file,post) => {
+    const upload = new DirectUpload(file, 'http://localhost:3000/rails/active_storage/direct_uploads')
+    upload.create((error,blob) => {
+      error? console.log(error) : this.put(`${BASE_URL}/posts/${post.id}`, {post_img: blob.signed_id})
+    })
+  }
+  
+  // ==== Profile ====
+  collectionClick = (id) => {
+    const showCollection = this.state.collections.find(collection => collection.id === id)
+  }
+  
   render() {
     const {currentUser,currentAvatar, collectionName, collectionDescription, plantNickname, acquiredOn, commonName, latinName, photo, caption, collectionID, storyId} = this.state
     return (

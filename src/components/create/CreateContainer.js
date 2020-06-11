@@ -18,7 +18,7 @@ function CreateContainer({
 }) {
   return (
     <>
-	{currentUser ? <>
+	{true ? <>
       <Button component={Link} to="/create/collection">
         Create a Collection
       </Button>
