@@ -15,6 +15,7 @@ function CreateContainer({
   handleChange,
   createCollectionSubmit,
   plantNickname, acquiredOn, commonName, latinName, photo, caption, collectionID, createStorySubmit, storyId, createPostSubmit
+
 }) {
   return (
     <>

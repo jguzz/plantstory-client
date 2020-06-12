@@ -13,6 +13,16 @@ function Story({
   common_name,
   latin_name,
 }) {
+  console.log({
+    acquiredOn,
+    collection_id,
+    created_at,
+    id,
+    nickname,
+    owned,
+    common_name,
+    latin_name,
+  })
   return (
     <>
       <CardContent>
@@ -20,7 +30,7 @@ function Story({
         <p>Common Name: {common_name}</p>
         <p>Latin Name: {latin_name}</p>
         <p>Acquired on: {acquiredOn}</p>
-        <Post />
+        {/* <Post /> */}
       </CardContent>
     </>
   );

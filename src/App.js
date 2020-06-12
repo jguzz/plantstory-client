@@ -30,11 +30,14 @@ class App extends React.Component {
     collections: [],
     likes: [],
     posts: [],
-    // ==== Auth ==== 
+    // ==== Auth/User data ==== 
     username: '',
     password: '',
     currentUser: null,
     currentAvatar: null,
+    userStories: [],
+    userCollections: [],
+    userPosts: [],
     // ==== Create ====
     // Collection
     collectionName: '',
@@ -117,13 +120,23 @@ class App extends React.Component {
     this.post(LOGIN_URL, user)
     .then(data => this.setCurrentUser(data))
   }
+
   
   // ==== Auth ====
+  // Sets the current users info, data and avatar
   setCurrentUser = (data) => {
     this.setState({
       currentUser: data.user,
       currentAvatar: data.avatar
-    })
+    },() => this.setUserData())
+  }
+  // Sets users collections, stories, and posts
+  setUserData = () => {
+    const userCollections = this.state.collections.filter(collection => collection.user_id === this.state.currentUser.id)
+    const userStories = userCollections.map(collection => this.state.stories.filter(story => story.collection_id === collection.id) )
+    const userPosts = userStories.filter(story => this.state.posts.filter(post => post.story_id === story.id))
+    this.setState({userStories: userStories, userCollections: userCollections, userPosts: userPosts})
+    console.log('uc', userCollections, 'us', userStories)
   }
 
   // ==== Create ====
@@ -176,7 +189,7 @@ class App extends React.Component {
   }
   
   render() {
-    const {currentUser,currentAvatar, collectionName, collectionDescription, plantNickname, acquiredOn, commonName, latinName, photo, caption, collectionID, storyId} = this.state
+    const {currentUser,currentAvatar, collectionName, collectionDescription, plantNickname, acquiredOn, commonName, latinName, photo, caption, collectionID, storyId, userCollections, userPosts, userStories} = this.state
     return (
       <div>
         <Navbar />
@@ -186,7 +199,7 @@ class App extends React.Component {
           <Route path="/newPost" render={() => <NewPost />} />
           <Route path="/create" render={() => <CreateContainer createPostSubmit={this.createPostSubmit} createStorySubmit={this.createStorySubmit} plantNickname={plantNickname} acquiredOn={acquiredOn} commonName={commonName} latinName={latinName} photo={photo} caption={caption} collectionID={collectionID} createCollectionSubmit={this.createCollectionSubmit} handleChange={this.handleChange} collectionName={collectionName} collectionDescription={collectionDescription} currentUser={currentUser} storyId={storyId}/>} />
           <Route path="/mainfeed" render={() => <MainFeed stories={this.state.stories}/>} />
-          <Route path="/profile" render={() => <Profile stories={this.state.stories} collections={this.state.collections} currentUser={currentUser} currentAvatar={currentAvatar}/>} />
+          <Route path="/profile" render={() => <Profile stories={userStories} collections={userCollections} currentUser={currentUser} currentAvatar={currentAvatar}/>} />
         </Switch>
         <BottomNav />
       </div>
