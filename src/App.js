@@ -44,10 +44,10 @@ class App extends React.Component {
     collectionDescription: "",
     // Story
     plantNickname: "",
-    acquiredOn: null,
+    acquiredOn: '03/21/1997',
     commonName: "",
     latinName: "",
-    collectionID: null,
+    collectionID: '',
     // Post
     photo: {},
     caption: "",
