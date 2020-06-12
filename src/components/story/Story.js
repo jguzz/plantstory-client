@@ -1,6 +1,7 @@
 import React from "react";
 import Post from "./Post";
-
+import SwipeableViews from 'react-swipeable-views';
+//  Material UI
 import CardContent from "@material-ui/core/CardContent";
 function storyPosts(posts, id ) {
   // console.log(posts)
