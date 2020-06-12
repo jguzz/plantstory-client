@@ -2,6 +2,11 @@ import React from "react";
 import Post from "./Post";
 
 import CardContent from "@material-ui/core/CardContent";
+function storyPosts(posts, id ) {
+  // console.log(posts)
+  return posts? 
+  posts.filter((post) => post.post.story_id === id):  []
+}
 
 function Story({
   acquiredOn,
@@ -12,17 +17,9 @@ function Story({
   owned,
   common_name,
   latin_name,
+  posts,
 }) {
-  console.log({
-    acquiredOn,
-    collection_id,
-    created_at,
-    id,
-    nickname,
-    owned,
-    common_name,
-    latin_name,
-  })
+  // console.log(posts)
   return (
     <>
       <CardContent>
@@ -30,7 +27,7 @@ function Story({
         <p>Common Name: {common_name}</p>
         <p>Latin Name: {latin_name}</p>
         <p>Acquired on: {acquiredOn}</p>
-        {/* <Post /> */}
+        {storyPosts(posts, id).map(post => <Post key={post.post.id} {...post}/>)}
       </CardContent>
     </>
   );
