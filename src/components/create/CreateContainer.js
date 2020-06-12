@@ -14,8 +14,8 @@ function CreateContainer({
   collectionDescription,
   handleChange,
   createCollectionSubmit,
-  plantNickname, acquiredOn, commonName, latinName, photo, caption, collectionID, createStorySubmit, storyId, createPostSubmit
-
+  plantNickname, acquiredOn, commonName, latinName, photo, caption, collectionID, createStorySubmit, storyId, createPostSubmit,
+  userStories, userCollections, userPosts
 }) {
   return (
     <>
@@ -35,7 +35,7 @@ function CreateContainer({
       <Switch>
         <Route path="/create/collection" render={() => <NewCollection collectionName={collectionName} collectionDescription={collectionDescription} handleChange={handleChange} createCollectionSubmit={createCollectionSubmit}/>} />
         <Route path="/create/story" render={() => <NewStory createStorySubmit={createStorySubmit} handleChange={handleChange} plantNickname={plantNickname} acquiredOn={acquiredOn} commonName={commonName} latinName={latinName}  collectionID={collectionID}  />} />
-        <Route path="/create/post" render={() => <NewPost createPostSubmit={createPostSubmit} photo={photo} caption={caption} storyId={storyId} handleChange={handleChange} />} />
+        <Route path="/create/post" render={() => <NewPost userStories={userStories} createPostSubmit={createPostSubmit} photo={photo} caption={caption} storyId={storyId} handleChange={handleChange} />} />
       </Switch>
     </>
   );
