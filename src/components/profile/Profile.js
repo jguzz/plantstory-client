@@ -4,7 +4,7 @@ import User from "./User";
 import AllStories from "./AllStories";
 import CollectionList from "../collection/CollectionList";
 import Button from "@material-ui/core/Button";
-function Profile({stories, collections, currentUser, currentAvatar}) {
+function Profile({stories, collections, currentUser, currentAvatar, posts}) {
   return (
     <>
     {currentUser?
@@ -17,7 +17,7 @@ function Profile({stories, collections, currentUser, currentAvatar}) {
         Collections
       </Button>
       <Switch>
-        <Route path="/profile/stories" render={() => <AllStories stories={stories} />} />
+        <Route path="/profile/stories" render={() => <AllStories posts={posts} stories={stories} />} />
         <Route path="/profile/collection_list" render={() => <CollectionList collections={collections} />} />
       </Switch> </>
   );

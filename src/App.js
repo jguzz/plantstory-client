@@ -136,13 +136,13 @@ class App extends React.Component {
     const userCollections = this.state.collections.filter(
       (collection) => collection.user_id === this.state.currentUser.id
     );
-    const userStories = userCollections.map((collection) =>
+    const userStories = userCollections.flatMap((collection) =>
       this.state.stories.filter(
         (story) => story.collection_id === collection.id
       )
     );
-    const userPosts = userStories.filter((story) =>
-      this.state.posts.filter((post) => post.story_id === story.id)
+    const userPosts = userStories.flatMap((story) =>
+      this.state.posts.filter((post) => post.post.story_id === story.id)
     );
     this.setState({
       userStories: userStories,
@@ -151,6 +151,11 @@ class App extends React.Component {
     });
     console.log("uc", userCollections, "us", userStories);
   };
+  getStories = () => {
+    const {stories, posts, collections} = this.state 
+    const idk = stories.filter(story=>  posts.filter(post => post.story_id === story.id))
+    console.log('idk', idk)
+  }
 
   // ==== Create ====
   // Collection Submit
@@ -251,6 +256,7 @@ class App extends React.Component {
       userCollections,
       userPosts,
       userStories,
+      posts,
     } = this.state;
     return (
       <div>
@@ -294,12 +300,13 @@ class App extends React.Component {
           />
           <Route
             path="/mainfeed"
-            render={() => <MainFeed stories={this.state.stories} />}
+            render={() => <MainFeed posts={posts} stories={this.state.stories} />}
           />
           <Route
             path="/profile"
             render={() => (
               <Profile
+                posts={userPosts}
                 stories={userStories}
                 collections={userCollections}
                 currentUser={currentUser}

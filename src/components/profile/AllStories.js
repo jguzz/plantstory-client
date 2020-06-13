@@ -1,11 +1,12 @@
 import React from 'react';
 import Story from '../story/Story'
 
-function AllStories({stories}) {
-  console.log(stories)
+function AllStories({stories, posts}) {
+  console.log(posts)
   return (
      <> <h3>All Stories</h3>
-  {stories.map( array => array.map((story,index) =><Story key={index} {...story}/>))}</>
+  {stories.map( (story,index) =><Story key={index} posts={posts}{...story}/>)}
+  </>
   );
 }
 

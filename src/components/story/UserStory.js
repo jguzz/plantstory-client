@@ -4,12 +4,12 @@ import SwipeableViews from 'react-swipeable-views';
 //  Material UI
 import CardContent from "@material-ui/core/CardContent";
 function storyPosts(posts, id ) {
-  // console.log(posts)
+  console.log(posts)
   return posts? 
-  posts.filter((post) => post.post.story_id === id):  []
+  posts.map(obj=> obj.filter(post => console.log(post))):  []
 }
 
-function Story({
+function UserStory({
   acquiredOn,
   collection_id,
   created_at,
@@ -34,4 +34,4 @@ function Story({
   );
 }
 
-export default Story;
+export default UserStory;
