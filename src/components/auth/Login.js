@@ -1,5 +1,3 @@
-// ================ Login ===================
-//imports
 import React from "react";
 import { Link } from "react-router-dom";
 // material ui
@@ -7,10 +5,10 @@ import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 
-function Login({handleChange, handleLoginSubmit}) {
+function Login() {
   return (
     <>
-      <form onChange={handleChange} onSubmit={(e) => handleLoginSubmit(e)}>
+      <form>
         <Typography variant="h5">Login</Typography>
         <label>
           <TextField label="username" name="username" type="text" />
