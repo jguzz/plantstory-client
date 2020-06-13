@@ -187,6 +187,7 @@ class App extends React.Component {
       latinName,
       collectionID,
       stories,
+      userStories
     } = this.state;
     const newStory = {
       collection_id: collectionID,
@@ -197,7 +198,7 @@ class App extends React.Component {
       latin_name: latinName,
     };
     this.post(STORY_URL, newStory).then((story) =>
-      this.setState({ stories: [...stories, story] })
+      this.setState({ stories: [...stories, story],userStories: [...userStories, story] })
     );
   };
   // Post Submit

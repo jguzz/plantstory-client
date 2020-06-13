@@ -18,7 +18,7 @@ function NewPost({photo, caption, storyId, handleChange, createPostSubmit,userSt
       <TextField value={caption} label="caption" name="caption" type="text" />
       <label>Add a post to which story?</label>
       <select name={"storyId"} onChange={handleChange} >
-        {userStories.map(array => array.map(story=> <option  value={story.id} name={storyId}>{story.nickname}</option>))}
+        {userStories.map(story=> <option  value={story.id} name={storyId}>{story.nickname}</option>)}
       </select>
 
 
