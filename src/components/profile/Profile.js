@@ -18,7 +18,7 @@ function Profile({stories, collections, currentUser, currentAvatar, posts}) {
       </Button>
       <Switch>
         <Route path="/profile/stories" render={() => <AllStories posts={posts} stories={stories} />} />
-        <Route path="/profile/collection_list" render={() => <CollectionList collections={collections} />} />
+        <Route path="/profile/collection_list" render={() => <CollectionList collections={collections} stories={stories} posts={posts} />} />
       </Switch> </>
   );
 }
