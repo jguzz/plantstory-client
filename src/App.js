@@ -136,13 +136,13 @@ class App extends React.Component {
     const userCollections = this.state.collections.filter(
       (collection) => collection.user_id === this.state.currentUser.id
     );
-    const userStories = userCollections.map((collection) =>
+    const userStories = userCollections.flatMap((collection) =>
       this.state.stories.filter(
         (story) => story.collection_id === collection.id
       )
     );
-    const userPosts = userStories.filter((story) =>
-      this.state.posts.filter((post) => post.story_id === story.id)
+    const userPosts = userStories.flatMap((story) =>
+      this.state.posts.filter((post) => post.post.story_id === story.id)
     );
     this.setState({
       userStories: userStories,
@@ -306,6 +306,7 @@ class App extends React.Component {
             path="/profile"
             render={() => (
               <Profile
+                posts={userPosts}
                 stories={userStories}
                 collections={userCollections}
                 currentUser={currentUser}
