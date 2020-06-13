@@ -5,6 +5,7 @@ import AllStories from "./AllStories";
 import CollectionList from "../collection/CollectionList";
 import Button from "@material-ui/core/Button";
 function Profile({stories, collections, currentUser, currentAvatar, posts}) {
+  
   return (
     <>
     {currentUser?
