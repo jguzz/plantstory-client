@@ -166,14 +166,15 @@ class App extends React.Component {
       collectionDescription,
       collectionName,
       collections,
+      userCollections
     } = this.state;
     const newCollection = {
       user_id: currentUser.id,
       description: collectionDescription,
       name: collectionName,
     };
-    this.post(COLLECTION_URL, newCollection).then(
-      this.setState({ collections: [...collections, newCollection] })
+    this.post(COLLECTION_URL, newCollection).then(collection =>
+      this.setState({ collections: [...collections, collection],userCollections:[...userCollections, collection] })
     );
   };
   // Story Submit
