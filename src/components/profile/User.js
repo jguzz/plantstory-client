@@ -1,10 +1,11 @@
 import React from 'react';
 
-function User() {
+function User({currentUser, currentAvatar}) {
   return (
-    <>User 
-	Profile Pic
-	Username
+    <>
+	<img src={`http://localhost:3000/${currentAvatar}`} alt="The current users profile pic"/>
+	
+	<p>Username: {currentUser.username}</p>
 	</>
   );
 }
