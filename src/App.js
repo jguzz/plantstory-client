@@ -204,9 +204,9 @@ class App extends React.Component {
   // Post Submit
   createPostSubmit = (e) => {
     e.preventDefault();
-    const { storyId, caption, posts, photo } = this.state;
+    const { storyId, caption, posts, photo, userPosts } = this.state;
     const newPost = { story_id: storyId, caption: caption };
-    this.post(POST_URL, newPost).then((data) => this.uploadFile(photo, data));
+    this.post(POST_URL, newPost).then((data) => this.uploadFile(photo, data))
   };
   // sends file to active storage in the backend to update post with a photo
   uploadFile = (file, post) => {
