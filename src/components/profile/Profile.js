@@ -4,12 +4,10 @@ import User from "./User";
 import AllStories from "./AllStories";
 import CollectionList from "../collection/CollectionList";
 import Button from "@material-ui/core/Button";
-function Profile({stories, collections, currentUser, currentAvatar, posts}) {
+function Profile({stories, collections}) {
   return (
     <>
-    {currentUser?
-      <User currentUser={currentUser} currentAvatar={currentAvatar} />: <p>No user is signed in!!!!!</p>
-    }
+      <User />
       <Button component={Link} to="/profile/stories">
         All Stories
       </Button>
@@ -17,9 +15,10 @@ function Profile({stories, collections, currentUser, currentAvatar, posts}) {
         Collections
       </Button>
       <Switch>
-        <Route path="/profile/stories" render={() => <AllStories posts={posts} stories={stories} />} />
-        <Route path="/profile/collection_list" render={() => <CollectionList collections={collections} stories={stories} posts={posts} />} />
-      </Switch> </>
+        <Route path="/profile/stories" render={() => <AllStories stories={stories} />} />
+        <Route path="/profile/collection_list" render={() => <CollectionList collections={collections} />} />
+      </Switch>
+    </>
   );
 }
 

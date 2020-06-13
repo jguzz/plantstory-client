@@ -1,35 +1,12 @@
-import React from "react";
-import Post from "./Post";
-import SwipeableViews from 'react-swipeable-views';
-//  Material UI
-import CardContent from "@material-ui/core/CardContent";
-function storyPosts(posts, id ) {
-  // console.log(posts)
-  return posts? 
-  posts.filter((post) => post.post.story_id === id):  []
-}
+import React from 'react';
+import Post from './Post'
 
-function Story({
-  acquiredOn,
-  collection_id,
-  created_at,
-  id,
-  nickname,
-  owned,
-  common_name,
-  latin_name,
-  posts,
-}) {
-  console.log(posts)
+function Story({acquiredOn,collection_id,created_at,id,nickname,owned,plant_id}) {
   return (
     <>
-      <CardContent>
-        <p>nickname: {nickname}</p>
-        <p>Common Name: {common_name}</p>
-        <p>Latin Name: {latin_name}</p>
-        <p>Acquired on: {acquiredOn}</p>
-        {storyPosts(posts, id).map(post => <Post key={post.post.id} {...post}/>)}
-      </CardContent>
+    <p>nickname: {nickname}</p>
+    <p>Acquired on: {acquiredOn}</p>  
+    <Post/>
     </>
   );
 }
