@@ -13,7 +13,7 @@ function Post({post_img,post,handleLike,likes}) {
   return (
     <>
     <Card >
-    <button onClick={handleLike}>like</button>
+    <button onClick={() => handleLike(post.id)}>like</button>
     <img src={`http://localhost:3000/${post_img}`} alt={post.caption} />
     <p>{post.caption}</p>
 
