@@ -355,6 +355,7 @@ class App extends React.Component {
                 collections={userCollections}
                 currentUser={currentUser}
                 currentAvatar={currentAvatar}
+                likes={likes} handleLike={this.handleLike}
               />
             )}
           />
