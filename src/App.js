@@ -20,6 +20,7 @@ const POST_URL = `${BASE_URL}/posts`;
 const STORY_URL = `${BASE_URL}/stories`;
 const COLLECTION_URL = `${BASE_URL}/collections`;
 const LOGIN_URL = `${BASE_URL}/login`;
+const COMMENT_URL = `${BASE_URL}/comments`
 
 class App extends React.Component {
   state = {
@@ -234,14 +235,14 @@ class App extends React.Component {
     });
   };
 
-  // ==== Profile ====
+  // =================== Profile ===========================
   collectionClick = (id) => {
     const showCollection = this.state.collections.find(
       (collection) => collection.id === id
     );
   };
 
-  // ======== Like =========
+  // ===================== Like =============================
   postLike = (likeObj) => {
     fetch(LIKE_URL, {
       method: "POST",
@@ -282,6 +283,12 @@ class App extends React.Component {
       console.log('Oh no, you cant like if youre not signed in!')
     }
   }
+  // ========================== Comment ==================================
+  postComment = () => {
+    postObj={}
+    this.post(COMMENT_URL, postObj)
+  }
+
   render() {
     const {
       currentUser,
