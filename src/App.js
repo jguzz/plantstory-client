@@ -342,7 +342,7 @@ class App extends React.Component {
           />
           <Route
             path="/mainfeed"
-            render={() => <MainFeed handleLike={this.handleLike} posts={posts} stories={this.state.stories} />}
+            render={() => <MainFeed likes={likes} handleLike={this.handleLike} posts={posts} stories={this.state.stories} />}
           />
           <Route
             path="/profile"
