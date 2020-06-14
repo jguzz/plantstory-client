@@ -2,6 +2,7 @@ import React from 'react';
 import Photo from './Photo'
 import Details from './Details'
 import Card from '@material-ui/core/Card'
+import Comment from './Comment'
 
 function numLikes(likes, post){
   const num = likes.filter(like => like.post_id === post.id)
@@ -20,6 +21,7 @@ function Post({post_img,post,handleLike,likes}) {
     <div>{numLikes(likes,post)} like </div>
     {/* <Photo/>
     <Details/> */}
+    <Comment/>
     </Card>
     </>
   );

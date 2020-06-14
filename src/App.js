@@ -31,6 +31,7 @@ class App extends React.Component {
     collections: [],
     likes: [],
     posts: [],
+    comments: [],
     // ==== Auth/User data ====
     username: "",
     password: "",
@@ -53,6 +54,9 @@ class App extends React.Component {
     photo: {},
     caption: "",
     storyId: '',
+    // Comment
+    commentPostId: null,
+    comment: '',
   };
 
   // ==== Fetching ====
@@ -95,6 +99,7 @@ class App extends React.Component {
     this.fetch(POST_URL, "posts");
     this.fetch(STORY_URL, "stories");
     this.fetch(COLLECTION_URL, "collections");
+    this.fetch(COMMENT_URL, "comments")
   };
 
   // ========== FORM ===========
@@ -284,10 +289,10 @@ class App extends React.Component {
     }
   }
   // ========================== Comment ==================================
-  postComment = () => {
-    const {posts,currentUser} = this.state
-    const com = 'hello world'
-    const postObj={post_id: 85, user_id: currentUser.id, text: 'hello'  }
+  commentSubmit = (e) => {
+    e.preventDefault()
+    const {commentPostId, comment, currentUser} = this.state
+    const postObj={post_id: commentPostId, user_id: currentUser.id, text: comment  }
     this.post(COMMENT_URL, postObj)
   }
 
