@@ -285,7 +285,9 @@ class App extends React.Component {
   }
   // ========================== Comment ==================================
   postComment = () => {
-    postObj={}
+    const {posts,currentUser} = this.state
+    const com = 'hello world'
+    const postObj={post_id: 85, user_id: currentUser.id, text: 'hello'  }
     this.post(COMMENT_URL, postObj)
   }
 
@@ -312,6 +314,7 @@ class App extends React.Component {
     return (
       <div>
         <Navbar />
+        <button onClick={this.postComment} >Post comment</button>
         <Switch>
           <Route
             path="/login"
