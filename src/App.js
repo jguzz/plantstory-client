@@ -247,7 +247,7 @@ class App extends React.Component {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        accept: "application/json",
+        Accept: "application/json",
       },
       body: JSON.stringify(likeObj),
     })
@@ -256,16 +256,16 @@ class App extends React.Component {
   };
   //Deletes a like
   deleteLike = (id) => {
-    fetch(LIKE_URL + `/${id}`, {
+    fetch(`${LIKE_URL}/${id}`, {
       method: "delete",
       headers: {
         "Content-Type": "application/json",
-        accept: "application/json",
+        Accept: "application/json",
       },
       body: JSON.stringify(id),
     })
       .then((res) => res.json())
-      .then((likes) => this.setState({ likes }));
+      .then(res => this.setState({likes: res}));
   };
   handleLike = ( id) => {
     const {currentUser, likes} = this.state
@@ -278,6 +278,8 @@ class App extends React.Component {
       !likeObj ?
         this.postLike({ user_id: currentUser.id, post_id: id })
         : this.deleteLike(likeObj.id)
+    } else {
+      console.log('Oh no, you cant like if youre not signed in!')
     }
   }
   render() {
