@@ -19,6 +19,8 @@ function Story({
   common_name,
   latin_name,
   posts,
+  handleLike,
+  likes,
 }) {
   console.log(posts)
   return (
@@ -28,7 +30,7 @@ function Story({
         <p>Common Name: {common_name}</p>
         <p>Latin Name: {latin_name}</p>
         <p>Acquired on: {acquiredOn}</p>
-        {storyPosts(posts, id).map(post => <Post key={post.post.id} {...post}/>)}
+        {storyPosts(posts, id).map(post => <Post likes={likes} handleLike={handleLike} key={post.post.id} {...post}/>)}
       </CardContent>
     </>
   );

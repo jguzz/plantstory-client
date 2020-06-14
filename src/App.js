@@ -241,6 +241,47 @@ class App extends React.Component {
     );
   };
 
+  // ======== Like =========
+  postLike = (likeObj) => {
+    fetch(LIKE_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(likeObj),
+    })
+      .then((res) => res.json())
+      .then((like) => this.setState({ likes: [...this.state.likes, like] }));
+  };
+  //Deletes a like
+  deleteLike = (id) => {
+    fetch(`${LIKE_URL}/${id}`, {
+      method: "delete",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(id),
+    })
+      .then((res) => res.json())
+      .then(res => this.setState({likes: res}));
+  };
+  handleLike = ( id) => {
+    const {currentUser, likes} = this.state
+    if (currentUser) {
+
+      const likeObj = likes.find(
+        (like) =>
+          like.post_id === id && like.user_id === currentUser.id
+      );
+      !likeObj ?
+        this.postLike({ user_id: currentUser.id, post_id: id })
+        : this.deleteLike(likeObj.id)
+    } else {
+      console.log('Oh no, you cant like if youre not signed in!')
+    }
+  }
   render() {
     const {
       currentUser,
@@ -259,6 +300,7 @@ class App extends React.Component {
       userPosts,
       userStories,
       posts,
+      likes,
     } = this.state;
     return (
       <div>
@@ -302,7 +344,7 @@ class App extends React.Component {
           />
           <Route
             path="/mainfeed"
-            render={() => <MainFeed posts={posts} stories={this.state.stories} />}
+            render={() => <MainFeed likes={likes} handleLike={this.handleLike} posts={posts} stories={this.state.stories} />}
           />
           <Route
             path="/profile"
@@ -313,6 +355,7 @@ class App extends React.Component {
                 collections={userCollections}
                 currentUser={currentUser}
                 currentAvatar={currentAvatar}
+                likes={likes} handleLike={this.handleLike}
               />
             )}
           />

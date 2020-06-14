@@ -3,7 +3,7 @@ import React from "react";
 import Card from "@material-ui/core/Card";
 import { Link } from "react-router-dom";
 
-function Collection({ posts,stories,created_at, description, id, name, user_id, }) {
+function Collection({ posts,stories,created_at, description, id, name, user_id, likes }) {
   return (
     <>
 
