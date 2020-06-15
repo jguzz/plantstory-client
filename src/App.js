@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import { DirectUpload } from "activestorage";
 // Components
 import Login from "./components/auth/Login";
@@ -11,7 +11,7 @@ import Navbar from "./components/nav/Navbar";
 import BottomNav from "./components/nav/BottomNav";
 import Profile from "./components/profile/Profile";
 import { common } from "@material-ui/core/colors";
-import SearchResults from "./components/search/SearchResults";
+import Search from "./components/search/Search";
 
 const BASE_URL = "http://localhost:3000";
 const USER_URL = `${BASE_URL}/users`;
@@ -58,6 +58,8 @@ class App extends React.Component {
     // Comment
     commentPostId: null,
     comment: '',
+    // Search
+    searchTerm: '',
   };
 
   // ==== Fetching ====
@@ -305,9 +307,7 @@ class App extends React.Component {
     .then(comments=> this.setState({comments: comments}))
   }
   // =================== Search ===================================
-  // handleSearchChange = (e) => {
-  //   <Link to="/search/:id" />
-  // }
+
 
   render() {
     const {
@@ -331,11 +331,11 @@ class App extends React.Component {
       comments,
       commentPostId,
       comment,
+      searchTerm,
     } = this.state;
     return (
       <div>
-        <Navbar />
-        <button onClick={this.postComment} >Post comment</button>
+        <Navbar handleSearchChange={this.handleSearchChange} />
         <Switch>
           <Route
             path="/login"
@@ -393,10 +393,10 @@ class App extends React.Component {
           />
           <Route path="/search"
           render={() => (
-            <SearchResults />
+            <Search currentUser={currentUser}   handleChange={this.handleChange} comments={comments} commentPostId={commentPostId} comment={comment} deleteComment={this.deleteComment} handleCommentSubmit={this.handleCommentSubmit} likes={likes} handleLike={this.handleLike} posts={posts} stories={this.state.stories} searchTerm={searchTerm} handleChange={this.handleChange}/>
           )} />
         </Switch>
-        <BottomNav />
+        <BottomNav  />
       </div>
     );
   }

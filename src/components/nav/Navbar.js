@@ -34,7 +34,6 @@ function NavBar() {
               Login
             </Button>
           )}
-          <TextField label="search" value={null} type="text"/> 
         </Toolbar>
       </AppBar>
     </>
