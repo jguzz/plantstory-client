@@ -59,7 +59,7 @@ class App extends React.Component {
     commentPostId: null,
     comment: '',
     // Search
-    searchTerm: '',
+    searchTerm: null,
   };
 
   // ==== Fetching ====
