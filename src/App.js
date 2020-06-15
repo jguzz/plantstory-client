@@ -91,6 +91,9 @@ class App extends React.Component {
       .then((res) => res.json())
       .then((data) => this.setState({ [name]: data }));
   };
+  delete =() => {
+    
+  }
   // Fetches all date from api, and seeds it to state.
   fetchAll = () => {
     this.fetch(USER_URL, "users");
@@ -101,6 +104,7 @@ class App extends React.Component {
     this.fetch(COLLECTION_URL, "collections");
     this.fetch(COMMENT_URL, "comments")
   };
+
 
   // ========== FORM ===========
   // Handle change helper method
@@ -261,8 +265,8 @@ class App extends React.Component {
       .then((like) => this.setState({ likes: [...this.state.likes, like] }));
   };
   //Deletes a like
-  deleteLike = (id) => {
-    fetch(`${LIKE_URL}/${id}`, {
+  deleteLike = (url,id) => {
+    fetch(`${url}/${id}`, {
       method: "delete",
       headers: {
         "Content-Type": "application/json",
@@ -291,12 +295,11 @@ class App extends React.Component {
   // ========================== Comment ==================================
   handleCommentSubmit = (e,postId) => {
     e.preventDefault()
-    const {commentPostId, comment, currentUser} = this.state
+    const {commentPostId, comment, currentUser,comments} = this.state
     const postObj={post_id: postId, user_id: currentUser.id, text: comment  }
-    this.post(COMMENT_URL, postObj)
+    this.post(COMMENT_URL, postObj).then(comment => this.setState({comments: [...comments, comment]}))
   }
-  deleteComment = (e, id) => {
-
+  deleteComment = ( id) => {
   }
 
   render() {
