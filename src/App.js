@@ -289,11 +289,14 @@ class App extends React.Component {
     }
   }
   // ========================== Comment ==================================
-  commentSubmit = (e) => {
+  handleCommentSubmit = (e,postId) => {
     e.preventDefault()
     const {commentPostId, comment, currentUser} = this.state
-    const postObj={post_id: commentPostId, user_id: currentUser.id, text: comment  }
+    const postObj={post_id: postId, user_id: currentUser.id, text: comment  }
     this.post(COMMENT_URL, postObj)
+  }
+  deleteComment = (e, id) => {
+
   }
 
   render() {
@@ -315,6 +318,9 @@ class App extends React.Component {
       userStories,
       posts,
       likes,
+      comments,
+      commentPostId,
+      comment,
     } = this.state;
     return (
       <div>
@@ -359,12 +365,13 @@ class App extends React.Component {
           />
           <Route
             path="/mainfeed"
-            render={() => <MainFeed likes={likes} handleLike={this.handleLike} posts={posts} stories={this.state.stories} />}
+            render={() => <MainFeed  handleChange={this.handleChange} comments={comments} commentPostId={commentPostId} comment={comment} deleteComment={this.deleteComment} handleCommentSubmit={this.handleCommentSubmit} likes={likes} handleLike={this.handleLike} posts={posts} stories={this.state.stories} />}
           />
           <Route
             path="/profile"
             render={() => (
               <Profile
+              comments={comments} commentPostId={commentPostId} comment={comment} deleteComment={this.deleteComment} handleCommentSubmit={this.handleCommentSubmit} handleChange={this.handleChange}
                 posts={userPosts}
                 stories={userStories}
                 collections={userCollections}

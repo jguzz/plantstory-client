@@ -10,7 +10,7 @@ function numLikes(likes, post){
   return num.length
 }
 
-function Post({post_img,post,handleLike,likes}) {
+function Post({handleChange, comments, commentPostId, comment, deleteComment, handleCommentSubmit, post_img,post,handleLike,likes}) {
   return (
     <>
     <Card >
@@ -21,7 +21,7 @@ function Post({post_img,post,handleLike,likes}) {
     <div>{numLikes(likes,post)} like </div>
     {/* <Photo/>
     <Details/> */}
-    <Comment/>
+   <Comment postId={post.id} handleChange={handleChange} comments={comments} commentPostId={commentPostId} comment={comment} deleteComment={deleteComment} handleCommentSubmit={handleCommentSubmit}/> 
     </Card>
     </>
   );

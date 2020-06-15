@@ -10,6 +10,7 @@ function storyPosts(posts, id ) {
 }
 
 function Story({
+  handleChange, comments, commentPostId, comment, deleteComment, handleCommentSubmit,
   acquiredOn,
   collection_id,
   created_at,
@@ -30,7 +31,7 @@ function Story({
         <p>Common Name: {common_name}</p>
         <p>Latin Name: {latin_name}</p>
         <p>Acquired on: {acquiredOn}</p>
-        {storyPosts(posts, id).map(post => <Post likes={likes} handleLike={handleLike} key={post.post.id} {...post}/>)}
+        {storyPosts(posts, id).map(post => <Post handleChange={handleChange} comments={comments} commentPostId={commentPostId} comment={comment} deleteComment={deleteComment} handleCommentSubmit={handleCommentSubmit} likes={likes} handleLike={handleLike} key={post.post.id} {...post}/>)}
       </CardContent>
     </>
   );
