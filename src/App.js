@@ -91,8 +91,16 @@ class App extends React.Component {
       .then((res) => res.json())
       .then((data) => this.setState({ [name]: data }));
   };
-  delete =() => {
-    
+  delete =(url, id) => {
+    return fetch(`${url}/${id}`, {
+      method: "delete",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(id),
+    })
+      .then((res) => res.json())
   }
   // Fetches all date from api, and seeds it to state.
   fetchAll = () => {
@@ -265,17 +273,9 @@ class App extends React.Component {
       .then((like) => this.setState({ likes: [...this.state.likes, like] }));
   };
   //Deletes a like
-  deleteLike = (url,id) => {
-    fetch(`${url}/${id}`, {
-      method: "delete",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(id),
-    })
-      .then((res) => res.json())
-      .then(res => this.setState({likes: res}));
+  deleteLike = (id) => {
+    this.delete(LIKE_URL, id)
+    .then(res => this.setState({likes: res}));
   };
   handleLike = ( id) => {
     const {currentUser, likes} = this.state
@@ -300,6 +300,8 @@ class App extends React.Component {
     this.post(COMMENT_URL, postObj).then(comment => this.setState({comments: [...comments, comment]}))
   }
   deleteComment = ( id) => {
+    this.delete(COMMENT_URL, id)
+    .then(comments=> this.setState({comments: comments}))
   }
 
   render() {
@@ -368,7 +370,7 @@ class App extends React.Component {
           />
           <Route
             path="/mainfeed"
-            render={() => <MainFeed  handleChange={this.handleChange} comments={comments} commentPostId={commentPostId} comment={comment} deleteComment={this.deleteComment} handleCommentSubmit={this.handleCommentSubmit} likes={likes} handleLike={this.handleLike} posts={posts} stories={this.state.stories} />}
+            render={() => <MainFeed currentUser={currentUser}   handleChange={this.handleChange} comments={comments} commentPostId={commentPostId} comment={comment} deleteComment={this.deleteComment} handleCommentSubmit={this.handleCommentSubmit} likes={likes} handleLike={this.handleLike} posts={posts} stories={this.state.stories} />}
           />
           <Route
             path="/profile"

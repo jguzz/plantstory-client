@@ -18,8 +18,8 @@ function Profile({handleChange, comments, commentPostId, comment, deleteComment,
         Collections
       </Button>
       <Switch>
-        <Route path="/profile/stories" render={() => <AllStories handleChange={handleChange} comments={comments} commentPostId={commentPostId} comment={comment} deleteComment={deleteComment} handleCommentSubmit={handleCommentSubmit} likes={likes} handleLike={handleLike} posts={posts} stories={stories} />} />
-        <Route path="/profile/collection_list" render={() => <CollectionList handleChange={handleChange} comments={comments} commentPostId={commentPostId} comment={comment} deleteComment={deleteComment} handleCommentSubmit={handleCommentSubmit} likes={likes} handleLike={handleLike} collections={collections} stories={stories} posts={posts} />} />
+        <Route path="/profile/stories" render={() => <AllStories currentUser={currentUser} handleChange={handleChange} comments={comments} commentPostId={commentPostId} comment={comment} deleteComment={deleteComment} handleCommentSubmit={handleCommentSubmit} likes={likes} handleLike={handleLike} posts={posts} stories={stories} />} />
+        <Route path="/profile/collection_list" render={() => <CollectionList currentUser={currentUser} handleChange={handleChange} comments={comments} commentPostId={commentPostId} comment={comment} deleteComment={deleteComment} handleCommentSubmit={handleCommentSubmit} likes={likes} handleLike={handleLike} collections={collections} stories={stories} posts={posts} />} />
       </Switch> </>
   );
 }

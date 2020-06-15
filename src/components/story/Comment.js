@@ -5,7 +5,7 @@ import TextField from "@material-ui/core/TextField";
 
 import Button from "@material-ui/core/Button";
 
-function Comment({handleChange, comments, commentPostId, comment, deleteComment, handleCommentSubmit,postId}) {
+function Comment({currentUser, handleChange, comments, commentPostId, comment, deleteComment, handleCommentSubmit,postId}) {
   // console.log(comments)
   return (
     <>Comment
@@ -13,7 +13,7 @@ function Comment({handleChange, comments, commentPostId, comment, deleteComment,
       <TextField value={comment} label='comment' name="comment" type="text"/>
       <Button>Submit</Button>
     </form>
-    {comments.map(comment=> comment.post_id === postId? <CommentShow key={comment.id} comment={comment}/> : null )}
+    {comments.map(comment=> comment.post_id === postId? <CommentShow deleteComment={deleteComment} currentUser={currentUser} key={comment.id} comment={comment}/> : null )}
     </>
   );
 }
