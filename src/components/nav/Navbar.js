@@ -10,7 +10,7 @@ import IconButton from "@material-ui/core/IconButton";
 // import Menu from "@material-ui/core/Menu"
 // import MenuItem from "@material-ui/core/MenuItem"
 import Button from "@material-ui/core/Button";
-
+import TextField from '@material-ui/core/TextField'
 function NavBar() {
   return (
     <>
@@ -34,6 +34,7 @@ function NavBar() {
               Login
             </Button>
           )}
+          <TextField label="search" value={null} type="text"/> 
         </Toolbar>
       </AppBar>
     </>

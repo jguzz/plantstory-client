@@ -11,6 +11,7 @@ import Navbar from "./components/nav/Navbar";
 import BottomNav from "./components/nav/BottomNav";
 import Profile from "./components/profile/Profile";
 import { common } from "@material-ui/core/colors";
+import SearchResults from "./components/search/SearchResults";
 
 const BASE_URL = "http://localhost:3000";
 const USER_URL = `${BASE_URL}/users`;
@@ -303,6 +304,10 @@ class App extends React.Component {
     this.delete(COMMENT_URL, id)
     .then(comments=> this.setState({comments: comments}))
   }
+  // =================== Search ===================================
+  // handleSearchChange = (e) => {
+  //   <Link to="/search/:id" />
+  // }
 
   render() {
     const {
@@ -386,6 +391,10 @@ class App extends React.Component {
               />
             )}
           />
+          <Route path="/search"
+          render={() => (
+            <SearchResults />
+          )} />
         </Switch>
         <BottomNav />
       </div>
