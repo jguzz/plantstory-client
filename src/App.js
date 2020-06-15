@@ -8,10 +8,12 @@ import NewPost from "./components/create/NewPost";
 import CreateContainer from "./components/create/CreateContainer";
 import MainFeed from "./components/home/MainFeed";
 import Navbar from "./components/nav/Navbar";
-import BottomNav from "./components/nav/BottomNav";
+// import BottomNav from "./components/nav/BottomNav";
 import Profile from "./components/profile/Profile";
 import { common } from "@material-ui/core/colors";
 import Search from "./components/search/Search";
+import { createMuiTheme } from "@material-ui/core";
+import Paper from '@material-ui/core/Paper'
 
 const BASE_URL = "http://localhost:3000";
 const USER_URL = `${BASE_URL}/users`;
@@ -334,7 +336,7 @@ class App extends React.Component {
       searchTerm,
     } = this.state;
     return (
-      <div>
+      <Paper>
         <Navbar handleSearchChange={this.handleSearchChange} />
         <Switch>
           <Route
@@ -396,8 +398,8 @@ class App extends React.Component {
             <Search currentUser={currentUser}   handleChange={this.handleChange} comments={comments} commentPostId={commentPostId} comment={comment} deleteComment={this.deleteComment} handleCommentSubmit={this.handleCommentSubmit} likes={likes} handleLike={this.handleLike} posts={posts} stories={this.state.stories} searchTerm={searchTerm} handleChange={this.handleChange}/>
           )} />
         </Switch>
-        <BottomNav  />
-      </div>
+        {/* <BottomNav  /> */}
+      </Paper>
     );
   }
 }
