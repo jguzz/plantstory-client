@@ -337,7 +337,10 @@ class App extends React.Component {
     } = this.state;
     return (
       <Paper>
+
+        
         <Navbar handleSearchChange={this.handleSearchChange} />
+        <div style={{position: "absolute"}}>
         <Switch>
           <Route
             path="/login"
@@ -398,6 +401,7 @@ class App extends React.Component {
             <Search currentUser={currentUser}   handleChange={this.handleChange} comments={comments} commentPostId={commentPostId} comment={comment} deleteComment={this.deleteComment} handleCommentSubmit={this.handleCommentSubmit} likes={likes} handleLike={this.handleLike} posts={posts} stories={this.state.stories} searchTerm={searchTerm} handleChange={this.handleChange}/>
           )} />
         </Switch>
+        </div>
         {/* <BottomNav  /> */}
       </Paper>
     );
