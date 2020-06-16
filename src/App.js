@@ -62,6 +62,8 @@ class App extends React.Component {
     comment: '',
     // Search
     searchTerm: null,
+    //Stepper
+    activeStep: 0,
   };
 
   // ==== Fetching ====
@@ -308,8 +310,17 @@ class App extends React.Component {
     this.delete(COMMENT_URL, id)
     .then(comments=> this.setState({comments: comments}))
   }
-  // =================== Search ===================================
-
+  // =================== Stepper ===================================
+  handleNext = () => {
+    this.setState({
+      activeStep: this.state.activeStep + 1
+    })
+  }
+  handleBack = () => {
+    this.setState({
+      activeStep: this.state.activeStep - 1
+    })
+  }
 
   render() {
     const {
@@ -334,6 +345,7 @@ class App extends React.Component {
       commentPostId,
       comment,
       searchTerm,
+      activeStep
     } = this.state;
     return (
       <Paper>
@@ -380,7 +392,7 @@ class App extends React.Component {
           />
           <Route
             path="/mainfeed"
-            render={() => <MainFeed currentUser={currentUser}   handleChange={this.handleChange} comments={comments} commentPostId={commentPostId} comment={comment} deleteComment={this.deleteComment} handleCommentSubmit={this.handleCommentSubmit} likes={likes} handleLike={this.handleLike} posts={posts} stories={this.state.stories} />}
+            render={() => <MainFeed handleNext={this.handleNext} handlePrev={this.handlePrev} activeStep={activeStep} currentUser={currentUser}   handleChange={this.handleChange} comments={comments} commentPostId={commentPostId} comment={comment} deleteComment={this.deleteComment} handleCommentSubmit={this.handleCommentSubmit} likes={likes} handleLike={this.handleLike} posts={posts} stories={this.state.stories} />}
           />
           <Route
             path="/profile"

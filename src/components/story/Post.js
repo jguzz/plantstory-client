@@ -15,7 +15,7 @@ function Post({currentUser,handleChange, comments, commentPostId, comment, delet
     <>
     <Card >
     <button onClick={() => handleLike(post.id)}>like</button>
-    <img src={`http://localhost:3000/${post_img}`} alt={post.caption} />
+    {/* <img src={`http://localhost:3000/${post_img}`} alt={post.caption} /> */}
     <p>{post.caption}</p>
 
     <div>{numLikes(likes,post)} like </div>

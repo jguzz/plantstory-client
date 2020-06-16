@@ -30,7 +30,7 @@ function MainFeed({
   stories,
   posts,
   handleLike,
-  likes,
+  likes, handleNext, handleBack, activeStep
 }) {
   const classes = useStyles();
   return (
@@ -40,12 +40,12 @@ function MainFeed({
       MainFeed
     </Typography>
     </div> */}
-      <Grid className={classes.gridContainer} container>
+      <Grid spacing={4} className={classes.gridContainer}direction="column" justify="space-between"  alignContent="center" container>
         {stories.map((story) => (
      
 
           
-            <Story
+            <Story handleNext={handleNext} handleBack={handleBack} activeStep={activeStep}
               currentUser={currentUser}
               handleChange={handleChange}
               comments={comments}
