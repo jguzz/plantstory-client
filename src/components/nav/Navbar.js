@@ -25,8 +25,7 @@ import SearchIcon from "@material-ui/icons/Search";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
+    height: '7.45em',
   },
   toolbar: {
     flexGrow: 1,
@@ -63,7 +62,7 @@ function NavBar() {
   const classes = useStyles();
   return (
     <>
-      <div className={classes.root}>
+      <div className={classes.root}/>
         <AppBar className={classes.appBar} position={"fixed"}>
           <Toolbar className={null}>
             <Grid
@@ -137,7 +136,7 @@ function NavBar() {
             </Tabs>
           </Toolbar>
         </AppBar>
-      </div>
+  
     </>
   );
 }
