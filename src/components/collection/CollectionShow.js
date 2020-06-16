@@ -1,7 +1,7 @@
 import React from 'react';
 import Collection from './Collection'
 import Story from '../story/Story.js'
-import Post from '../story/Post.js'
+import Post from '../story/Like.js'
 import { Route, Switch, Link, useParams } from "react-router-dom";
 import Card from '@material-ui/core/Card'
 

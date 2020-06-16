@@ -10,21 +10,16 @@ function numLikes(likes, post){
   return num.length
 }
 
-function Post({currentUser,handleChange, comments, commentPostId, comment, deleteComment, handleCommentSubmit, post_img,post,handleLike,likes}) {
+function Like({currentUser,handleChange, comments, commentPostId, comment, deleteComment, handleCommentSubmit,post,handleLike,likes}) {
   return (
     <>
-    <Card >
     <button onClick={() => handleLike(post.id)}>like</button>
-    {/* <img src={`http://localhost:3000/${post_img}`} alt={post.caption} /> */}
-    <p>{post.caption}</p>
 
     <div>{numLikes(likes,post)} like </div>
-    {/* <Photo/>
-    <Details/> */}
    {/* <Comment currentUser={currentUser} postId={post.id} handleChange={handleChange} comments={comments} commentPostId={commentPostId} comment={comment} deleteComment={deleteComment} handleCommentSubmit={handleCommentSubmit}/>  */}
-    </Card>
+
     </>
   );
 }
 
-export default Post;
+export default Like;

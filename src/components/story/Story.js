@@ -1,5 +1,5 @@
 import React from "react";
-import Post from "./Post";
+import Like from "./Like";
 import PostImg from "./PostImg";
 import SwipeableViews from "react-swipeable-views";
 import Stepper from './Stepper'
@@ -64,6 +64,9 @@ function Story({
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
+  const handleStepChange = (step) => {
+    setActiveStep(step);
+  };
   const thisStoriesPosts = storyPosts(posts, id).filter((post) => post);
   const classes = useStyles();
   const theme = useTheme();
@@ -100,40 +103,6 @@ function Story({
                 alt={currentPosts[activeStep].caption}
               />
               <Stepper theme={theme} activeStep={activeStep} handleNext={handleNext} handleBack={handleBack}  currentPosts={currentPosts}/>
-              {/* <MobileStepper
-                steps={storyPosts(posts, id).length}
-                position="static"
-                variant="text"
-                activeStep={activeStep}
-                nextButton={
-                  <Button
-                    size="small"
-                    onClick={handleNext}
-                    disabled={activeStep === storyPosts(posts, id).length - 1}
-                  >
-                    Next
-                    {theme.direction === "rtl" ? (
-                      <KeyboardArrowLeft />
-                    ) : (
-                      <KeyboardArrowRight />
-                    )}
-                  </Button>
-                }
-                backButton={
-                  <Button
-                    size="small"
-                    onClick={handleBack}
-                    disabled={activeStep === 0}
-                  >
-                    {theme.direction === "rtl" ? (
-                      <KeyboardArrowRight />
-                    ) : (
-                      <KeyboardArrowLeft />
-                    )}
-                    Back
-                  </Button>
-                }
-              /> */}
             </div>
           ) : null}
 
@@ -156,7 +125,7 @@ function Story({
             {currentPosts[activeStep] ? <Typography>{currentPosts[activeStep].post.caption}</Typography> : null}
           </CardContent>
           {storyPosts(posts, id).map((post) => (
-            <Post
+            <Like
               currentUser={currentUser}
               handleChange={handleChange}
               comments={comments}
