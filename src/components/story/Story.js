@@ -20,7 +20,11 @@ function storyPosts(posts, id) {
   // console.log(posts)
   return posts ? posts.filter((post) => post.post.story_id === id) : [];
 }
-
+function numLikes(likes, post){
+  const num = likes.filter(like => like.post_id === post.id)
+  console.log(num, post.id)
+  return num.length
+}
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: "dark",
@@ -124,7 +128,7 @@ function Story({
             </Grid>
             {currentPosts[activeStep] ? <Typography>{currentPosts[activeStep].post.caption}</Typography> : null}
           </CardContent>
-          {storyPosts(posts, id).map((post) => (
+          {/* {storyPosts(posts, id).map((post) => (
             <Like
               currentUser={currentUser}
               handleChange={handleChange}
@@ -138,7 +142,14 @@ function Story({
               key={post.post.id}
               {...post}
             />
-          ))}
+          ))} */}
+
+          {currentPosts[activeStep] ? (
+            <div>
+                <button onClick={() => handleLike(currentPosts[activeStep].post.id)}>like</button>
+                <div>{numLikes(likes,currentPosts[activeStep].post)} like </div>
+            </div>
+          ) : null}
         </Card>
       </Grid>
     </>
