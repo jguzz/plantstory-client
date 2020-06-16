@@ -21,7 +21,7 @@ function Post({currentUser,handleChange, comments, commentPostId, comment, delet
     <div>{numLikes(likes,post)} like </div>
     {/* <Photo/>
     <Details/> */}
-   <Comment currentUser={currentUser} postId={post.id} handleChange={handleChange} comments={comments} commentPostId={commentPostId} comment={comment} deleteComment={deleteComment} handleCommentSubmit={handleCommentSubmit}/> 
+   {/* <Comment currentUser={currentUser} postId={post.id} handleChange={handleChange} comments={comments} commentPostId={commentPostId} comment={comment} deleteComment={deleteComment} handleCommentSubmit={handleCommentSubmit}/>  */}
     </Card>
     </>
   );

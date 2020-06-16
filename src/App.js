@@ -392,7 +392,7 @@ class App extends React.Component {
           />
           <Route
             path="/mainfeed"
-            render={() => <MainFeed handleNext={this.handleNext} handlePrev={this.handlePrev} activeStep={activeStep} currentUser={currentUser}   handleChange={this.handleChange} comments={comments} commentPostId={commentPostId} comment={comment} deleteComment={this.deleteComment} handleCommentSubmit={this.handleCommentSubmit} likes={likes} handleLike={this.handleLike} posts={posts} stories={this.state.stories} />}
+            render={() => <MainFeed handleNext={this.handleNext} handleBack={this.handleBack} activeStep={activeStep} currentUser={currentUser}   handleChange={this.handleChange} comments={comments} commentPostId={commentPostId} comment={comment} deleteComment={this.deleteComment} handleCommentSubmit={this.handleCommentSubmit} likes={likes} handleLike={this.handleLike} posts={posts} stories={this.state.stories} />}
           />
           <Route
             path="/profile"
