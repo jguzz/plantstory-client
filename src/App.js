@@ -38,7 +38,7 @@ class App extends React.Component {
     // ==== Auth/User data ====
     username: "",
     password: "",
-    currentUser: null,
+    currentUser: {},
     currentAvatar: null,
     userStories: [],
     userCollections: [],
@@ -123,7 +123,8 @@ class App extends React.Component {
   // Handle change helper method
   handleChange = (e) => {
     console.log(e);
-    e.target ? this.setState({
+    e.target
+      ? this.setState({
           [e.target.name]: e.target.value,
         })
       : this.setState({
@@ -164,14 +165,16 @@ class App extends React.Component {
         (story) => story.collection_id === collection.id
       )
     );
-    const userPosts = userStories.flatMap((story) =>
-      this.state.posts.filter((post) => post.post.story_id === story.id)
-    );
-    this.setState({
-      userStories: userStories,
-      userCollections: userCollections,
-      userPosts: userPosts,
-    });
+
+      const userPosts = userStories.flatMap((story) =>
+        this.state.posts.filter((post) => post.post.story_id === story.id)
+      );
+      this.setState({
+        userStories: userStories,
+        userCollections: userCollections,
+        userPosts: userPosts,
+      });
+    
     console.log("uc", userCollections, "us", userStories);
   };
   getStories = () => {
