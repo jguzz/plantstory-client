@@ -8,7 +8,7 @@ import Button from "@material-ui/core/Button";
 function Comment({currentUser, handleChange, comments, commentPostId, comment, deleteComment, handleCommentSubmit,postId}) {
   // console.log(comments)
   return (
-    <>Comment
+    <>
     <form onChange={handleChange} onSubmit={(e => handleCommentSubmit(e,postId))}>
       <TextField value={comment} label='comment' name="comment" type="text"/>
       <Button>Submit</Button>
