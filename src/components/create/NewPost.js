@@ -77,40 +77,49 @@ function NewPost({
           padding: "10em",
         }}
       >
-        <form onChange={handleChange} onSubmit={createPostSubmit}>
+        <form
+          className={classes.form}
+          onChange={handleChange}
+          onSubmit={createPostSubmit}
+        >
           <Grid container spacing={10}>
             <Grid item xs={12}>
               <Typography className={classes.login} variant="h5">
                 Create a Post
               </Typography>
             </Grid>
-          </Grid>
-          <Grid item className={classes.gridItem} xs={12}>
-            <TextField className={classes.textField} label="photo" name="photo" type="file" />
-          </Grid>
-          <Grid item className={classes.gridItem} xs={12}>
-            <TextField
-              className={classes.textField}
-              value={caption}
-              label="caption"
-              name="caption"
-              type="text"
-            />
-          </Grid>
-          <Grid item className={classes.gridItem} xs={12}>
-            <FormControl className={classes.formControl}>
-              <InputLabel>Story</InputLabel>
-              <Select name={"storyId"} onChange={handleChange}>
-                {userStories.map((story) => (
-                  <MenuItem value={story.id} name={storyId}>
-                    {story.nickname}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} className={classes.signInGrid}>
-            <Button type="submit">Create Post</Button>
+            <Grid item className={classes.gridItem} xs={12}>
+              <TextField
+                className={classes.textField}
+                label="photo"
+                name="photo"
+                type="file"
+              />
+            </Grid>
+            <Grid item className={classes.gridItem} xs={12}>
+              <TextField
+                className={classes.textField}
+                value={caption}
+                label="caption"
+                name="caption"
+                type="text"
+              />
+            </Grid>
+            <Grid item className={classes.gridItem} xs={12}>
+              <FormControl className={classes.formControl}>
+                <InputLabel>Story</InputLabel>
+                <Select name={"storyId"} onChange={handleChange}>
+                  {userStories.map((story) => (
+                    <MenuItem value={story.id} name={storyId}>
+                      {story.nickname}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} className={classes.signInGrid}>
+              <Button type="submit">Create Post</Button>
+            </Grid>
           </Grid>
         </form>
       </Container>

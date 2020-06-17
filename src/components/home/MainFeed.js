@@ -7,13 +7,6 @@ import Grid from "@material-ui/core/Grid";
 import Typography from '@material-ui/core/Typography'
 
 const useStyles = makeStyles((theme) => ({
-  heading: {
-    margin: 'auto',
-  },
-  headingContainer: {
-    alignContent: 'center',
-    height: '7.45em',
-  },
   gridContainer: {
     width: '100%'
   }
