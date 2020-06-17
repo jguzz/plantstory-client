@@ -11,7 +11,7 @@ function Comment({currentUser, handleChange, comments, commentPostId, comment, d
     <>
     <form onChange={handleChange} onSubmit={(e => handleCommentSubmit(e,postId))}>
       <TextField value={comment} label='comment' name="comment" type="text"/>
-      <Button>Submit</Button>
+      {/* <Button>Submit</Button> */}
     </form>
     {comments.map(comment=> comment.post_id === postId? <CommentShow deleteComment={deleteComment} currentUser={currentUser} key={comment.id} comment={comment}/> : null )}
     </>
