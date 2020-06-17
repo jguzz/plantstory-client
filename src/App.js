@@ -13,7 +13,7 @@ import Profile from "./components/profile/Profile";
 import { common } from "@material-ui/core/colors";
 import Search from "./components/search/Search";
 import { createMuiTheme } from "@material-ui/core";
-import Paper from '@material-ui/core/Paper'
+import Paper from "@material-ui/core/Paper";
 
 const BASE_URL = "http://localhost:3000";
 const USER_URL = `${BASE_URL}/users`;
@@ -23,7 +23,7 @@ const POST_URL = `${BASE_URL}/posts`;
 const STORY_URL = `${BASE_URL}/stories`;
 const COLLECTION_URL = `${BASE_URL}/collections`;
 const LOGIN_URL = `${BASE_URL}/login`;
-const COMMENT_URL = `${BASE_URL}/comments`
+const COMMENT_URL = `${BASE_URL}/comments`;
 
 class App extends React.Component {
   state = {
@@ -49,17 +49,17 @@ class App extends React.Component {
     collectionDescription: "",
     // Story
     plantNickname: "",
-    acquiredOn: '03/21/1997',
+    acquiredOn: "03/21/1997",
     commonName: "",
     latinName: "",
-    collectionID: '',
+    collectionID: "",
     // Post
     photo: {},
     caption: "",
-    storyId: '',
+    storyId: "",
     // Comment
     commentPostId: null,
-    comment: '',
+    comment: "",
     // Search
     searchTerm: null,
     //Stepper
@@ -98,7 +98,7 @@ class App extends React.Component {
       .then((res) => res.json())
       .then((data) => this.setState({ [name]: data }));
   };
-  delete =(url, id) => {
+  delete = (url, id) => {
     return fetch(`${url}/${id}`, {
       method: "delete",
       headers: {
@@ -106,9 +106,8 @@ class App extends React.Component {
         Accept: "application/json",
       },
       body: JSON.stringify(id),
-    })
-      .then((res) => res.json())
-  }
+    }).then((res) => res.json());
+  };
   // Fetches all date from api, and seeds it to state.
   fetchAll = () => {
     this.fetch(USER_URL, "users");
@@ -117,19 +116,18 @@ class App extends React.Component {
     this.fetch(POST_URL, "posts");
     this.fetch(STORY_URL, "stories");
     this.fetch(COLLECTION_URL, "collections");
-    this.fetch(COMMENT_URL, "comments")
+    this.fetch(COMMENT_URL, "comments");
   };
-
 
   // ========== FORM ===========
   // Handle change helper method
   handleChange = (e) => {
-    e.target.name === "photo"
-      ? this.setState({
-          [e.target.name]: e.target.files[0],
+    console.log(e);
+    e.target ? this.setState({
+          [e.target.name]: e.target.value,
         })
       : this.setState({
-          [e.target.name]: e.target.value,
+          photo: e[0],
         });
   };
   // Handle submit helper method
@@ -177,10 +175,12 @@ class App extends React.Component {
     console.log("uc", userCollections, "us", userStories);
   };
   getStories = () => {
-    const {stories, posts, collections} = this.state 
-    const idk = stories.filter(story=>  posts.filter(post => post.story_id === story.id))
-    console.log('idk', idk)
-  }
+    const { stories, posts, collections } = this.state;
+    const idk = stories.filter((story) =>
+      posts.filter((post) => post.story_id === story.id)
+    );
+    console.log("idk", idk);
+  };
 
   // ==== Create ====
   // Collection Submit
@@ -191,15 +191,18 @@ class App extends React.Component {
       collectionDescription,
       collectionName,
       collections,
-      userCollections
+      userCollections,
     } = this.state;
     const newCollection = {
       user_id: currentUser.id,
       description: collectionDescription,
       name: collectionName,
     };
-    this.post(COLLECTION_URL, newCollection).then(collection =>
-      this.setState({ collections: [...collections, collection],userCollections:[...userCollections, collection] })
+    this.post(COLLECTION_URL, newCollection).then((collection) =>
+      this.setState({
+        collections: [...collections, collection],
+        userCollections: [...userCollections, collection],
+      })
     );
   };
   // Story Submit
@@ -212,7 +215,7 @@ class App extends React.Component {
       latinName,
       collectionID,
       stories,
-      userStories
+      userStories,
     } = this.state;
     const newStory = {
       collection_id: collectionID,
@@ -223,7 +226,10 @@ class App extends React.Component {
       latin_name: latinName,
     };
     this.post(STORY_URL, newStory).then((story) =>
-      this.setState({ stories: [...stories, story],userStories: [...userStories, story] })
+      this.setState({
+        stories: [...stories, story],
+        userStories: [...userStories, story],
+      })
     );
   };
   // Post Submit
@@ -231,7 +237,7 @@ class App extends React.Component {
     e.preventDefault();
     const { storyId, caption, posts, photo, userPosts } = this.state;
     const newPost = { story_id: storyId, caption: caption };
-    this.post(POST_URL, newPost).then((data) => this.uploadFile(photo, data))
+    this.post(POST_URL, newPost).then((data) => this.uploadFile(photo, data));
   };
   // sends file to active storage in the backend to update post with a photo
   uploadFile = (file, post) => {
@@ -281,46 +287,46 @@ class App extends React.Component {
   };
   //Deletes a like
   deleteLike = (id) => {
-    this.delete(LIKE_URL, id)
-    .then(res => this.setState({likes: res}));
+    this.delete(LIKE_URL, id).then((res) => this.setState({ likes: res }));
   };
-  handleLike = ( id) => {
-    const {currentUser, likes} = this.state
+  handleLike = (id) => {
+    const { currentUser, likes } = this.state;
     if (currentUser) {
-
       const likeObj = likes.find(
-        (like) =>
-          like.post_id === id && like.user_id === currentUser.id
+        (like) => like.post_id === id && like.user_id === currentUser.id
       );
-      !likeObj ?
-        this.postLike({ user_id: currentUser.id, post_id: id })
-        : this.deleteLike(likeObj.id)
+      !likeObj
+        ? this.postLike({ user_id: currentUser.id, post_id: id })
+        : this.deleteLike(likeObj.id);
     } else {
-      console.log('Oh no, you cant like if youre not signed in!')
+      console.log("Oh no, you cant like if youre not signed in!");
     }
-  }
+  };
   // ========================== Comment ==================================
-  handleCommentSubmit = (e,postId) => {
-    e.preventDefault()
-    const {commentPostId, comment, currentUser,comments} = this.state
-    const postObj={post_id: postId, user_id: currentUser.id, text: comment  }
-    this.post(COMMENT_URL, postObj).then(comment => this.setState({comments: [...comments, comment]}))
-  }
-  deleteComment = ( id) => {
-    this.delete(COMMENT_URL, id)
-    .then(comments=> this.setState({comments: comments}))
-  }
+  handleCommentSubmit = (e, postId) => {
+    e.preventDefault();
+    const { commentPostId, comment, currentUser, comments } = this.state;
+    const postObj = { post_id: postId, user_id: currentUser.id, text: comment };
+    this.post(COMMENT_URL, postObj).then((comment) =>
+      this.setState({ comments: [...comments, comment] })
+    );
+  };
+  deleteComment = (id) => {
+    this.delete(COMMENT_URL, id).then((comments) =>
+      this.setState({ comments: comments })
+    );
+  };
   // =================== Stepper ===================================
   handleNext = () => {
     this.setState({
-      activeStep: this.state.activeStep + 1
-    })
-  }
+      activeStep: this.state.activeStep + 1,
+    });
+  };
   handleBack = () => {
     this.setState({
-      activeStep: this.state.activeStep - 1
-    })
-  }
+      activeStep: this.state.activeStep - 1,
+    });
+  };
 
   render() {
     const {
@@ -345,14 +351,12 @@ class App extends React.Component {
       commentPostId,
       comment,
       searchTerm,
-      activeStep
+      activeStep,
     } = this.state;
     return (
       <Paper>
-
-        
         <Navbar handleSearchChange={this.handleSearchChange} />
-   
+
         <Switch>
           <Route
             path="/login"
@@ -384,36 +388,75 @@ class App extends React.Component {
                 collectionDescription={collectionDescription}
                 currentUser={currentUser}
                 storyId={storyId}
-                userCollections= {userCollections}
-                userPosts= {userPosts}
+                userCollections={userCollections}
+                userPosts={userPosts}
                 userStories={userStories}
               />
             )}
           />
           <Route
             path="/mainfeed"
-            render={() => <MainFeed handleNext={this.handleNext} handleBack={this.handleBack} activeStep={activeStep} currentUser={currentUser}   handleChange={this.handleChange} comments={comments} commentPostId={commentPostId} comment={comment} deleteComment={this.deleteComment} handleCommentSubmit={this.handleCommentSubmit} likes={likes} handleLike={this.handleLike} posts={posts} stories={this.state.stories} />}
+            render={() => (
+              <MainFeed
+                handleNext={this.handleNext}
+                handleBack={this.handleBack}
+                activeStep={activeStep}
+                currentUser={currentUser}
+                handleChange={this.handleChange}
+                comments={comments}
+                commentPostId={commentPostId}
+                comment={comment}
+                deleteComment={this.deleteComment}
+                handleCommentSubmit={this.handleCommentSubmit}
+                likes={likes}
+                handleLike={this.handleLike}
+                posts={posts}
+                stories={this.state.stories}
+              />
+            )}
           />
           <Route
             path="/profile"
             render={() => (
               <Profile
-              comments={comments} commentPostId={commentPostId} comment={comment} deleteComment={this.deleteComment} handleCommentSubmit={this.handleCommentSubmit} handleChange={this.handleChange}
+                comments={comments}
+                commentPostId={commentPostId}
+                comment={comment}
+                deleteComment={this.deleteComment}
+                handleCommentSubmit={this.handleCommentSubmit}
+                handleChange={this.handleChange}
                 posts={userPosts}
                 stories={userStories}
                 collections={userCollections}
                 currentUser={currentUser}
                 currentAvatar={currentAvatar}
-                likes={likes} handleLike={this.handleLike}
+                likes={likes}
+                handleLike={this.handleLike}
               />
             )}
           />
-          <Route path="/search"
-          render={() => (
-            <Search currentUser={currentUser}   handleChange={this.handleChange} comments={comments} commentPostId={commentPostId} comment={comment} deleteComment={this.deleteComment} handleCommentSubmit={this.handleCommentSubmit} likes={likes} handleLike={this.handleLike} posts={posts} stories={this.state.stories} searchTerm={searchTerm} handleChange={this.handleChange}/>
-          )} />
+          <Route
+            path="/search"
+            render={() => (
+              <Search
+                currentUser={currentUser}
+                handleChange={this.handleChange}
+                comments={comments}
+                commentPostId={commentPostId}
+                comment={comment}
+                deleteComment={this.deleteComment}
+                handleCommentSubmit={this.handleCommentSubmit}
+                likes={likes}
+                handleLike={this.handleLike}
+                posts={posts}
+                stories={this.state.stories}
+                searchTerm={searchTerm}
+                handleChange={this.handleChange}
+              />
+            )}
+          />
         </Switch>
-      
+
         {/* <BottomNav  /> */}
       </Paper>
     );
