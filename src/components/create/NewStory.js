@@ -11,7 +11,7 @@ import Container from "@material-ui/core/Container";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import InputLabel from "@material-ui/core/InputLabel";
-import FormControl from '@material-ui/core/FormControl'
+import FormControl from "@material-ui/core/FormControl";
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -104,11 +104,15 @@ function NewStory({
             </Grid>
             <Grid item className={classes.gridItem} xs={12}>
               <TextField
-                className={classes.textField}
                 value={acquiredOn}
-                label="aqcuired on"
-                name="acquiredOn"
+                label="Acquired On"
                 type="date"
+                name="acquiredOn"
+                defaultValue="2020-03-21"
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true,
+                }}
               />
             </Grid>
             <Grid item className={classes.gridItem} xs={12}>
@@ -131,22 +135,17 @@ function NewStory({
             </Grid>
 
             <Grid item className={classes.gridItem} xs={12}>
-
               <FormControl className={classes.formControl}>
-              <InputLabel >Collection</InputLabel>
+                <InputLabel>Collection</InputLabel>
 
-              <Select
-                
-                name={"collectionID"}
-                onChange={handleChange}
-                >
-                {userCollections.map((collection) => (
-                  <MenuItem value={collection.id} name={collectionID}>
-                    {collection.name}
-                  </MenuItem>
-                ))}
-              </Select>
-                </FormControl>
+                <Select name={"collectionID"} onChange={handleChange}>
+                  {userCollections.map((collection) => (
+                    <MenuItem value={collection.id} name={collectionID}>
+                      {collection.name}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
               {/* <select name={"collectionID"} onChange={handleChange}></select> */}
               <Grid item xs={12} className={classes.signInGrid}>
                 <Button type="submit">Create Story</Button>
