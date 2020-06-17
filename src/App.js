@@ -124,16 +124,10 @@ class App extends React.Component {
   // ========== FORM ===========
   // Handle change helper method
   handleChange = (e) => {
-<<<<<<< HEAD
-    console.log(e);
-    e.target
-      ? this.setState({
-          [e.target.name]: e.target.value,
-=======
+
     e.target.name === "photo"
       ? this.setState({
           [e.target.name]: e.target.files[0],
->>>>>>> parent of 807aa2b... adding dropzone... stopped working
         })
       : this.setState({
           [e.target.name]: e.target.value,
