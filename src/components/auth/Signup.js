@@ -14,7 +14,6 @@ const useStyles = makeStyles({
     height: "100%",
     alignContent: "center",
     margin: "auto",
-   
   },
   form: {
     flexGrow: 1,
@@ -79,19 +78,40 @@ function Signup() {
               </Typography>
             </Grid>
             <Grid item className={classes.gridItem} xs={12}>
-              <TextField  className={classes.textField} label="name" name="name" type="text" />
+              <TextField
+                className={classes.textField}
+                label="name"
+                name="name"
+                type="text"
+              />
             </Grid>
             <Grid item className={classes.gridItem} xs={12}>
-              <TextField  className={classes.textField} label="email" name="email" type="text" />
+              <TextField
+                className={classes.textField}
+                label="email"
+                name="email"
+                type="text"
+              />
             </Grid>
             <Grid item className={classes.gridItem} xs={12}>
-              <TextField   className={classes.textField} label="username" name="username" type="text" />
+              <TextField
+                className={classes.textField}
+                label="username"
+                name="username"
+                type="text"
+              />
             </Grid>
             <Grid item className={classes.gridItem} xs={12}>
-              <TextField  className={classes.textField} label="password" name="password" type="text" />
+              <TextField
+                className={classes.textField}
+                label="password"
+                name="password"
+                type="text"
+              />
             </Grid>
             <Grid item className={classes.gridItem} xs={12}>
-              <TextField  className={classes.textField}
+              <TextField
+                className={classes.textField}
                 label="passwordConfirm"
                 name="passwordConfirm"
                 type="text"
@@ -99,7 +119,6 @@ function Signup() {
             </Grid>
             <Grid item xs={12} className={classes.signInGrid}>
               <Link to="/mainfeed">
-                {" "}
                 <Button
                   component={Link}
                   to="/mainfeed"
