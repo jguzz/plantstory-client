@@ -12,12 +12,6 @@ import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 
 const useStyles = makeStyles({
-  card: {
-    height: "100%",
-    alignContent: "center",
-    margin: "auto",
-    padding: "10em",
-  },
   form: {
     flexGrow: 1,
     minHeight: "30em",
@@ -27,11 +21,6 @@ const useStyles = makeStyles({
     item: true,
     marginLeft: "10%",
     marginRight: "10%",
-  },
-  heading: {
-    color: "#00b359",
-    textAlign: "center",
-    fontSize: "3em",
   },
   input: {
     margin: "auto",
