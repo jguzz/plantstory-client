@@ -1,5 +1,4 @@
-import React, {useCallback} from "react";
-import {useDropzone} from 'react-dropzone'
+import React from "react";
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -12,8 +11,6 @@ import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
-
-
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -69,13 +66,7 @@ function NewPost({
   createPostSubmit,
   userStories,
 }) {
-  // const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
   const classes = useStyles();
-  const onDrop = useCallback(acceptedFiles => {
-    // Do something with the files
-    handleChange(acceptedFiles)
-  }, [])
-  const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
   return (
     <>
       <Container
@@ -126,14 +117,6 @@ function NewPost({
                 </Select>
               </FormControl>
             </Grid>
-            <div {...getRootProps()}>
-      <input {...getInputProps()} />
-      {
-        isDragActive ?
-          <p>Drop the files here ...</p> :
-          <p>Drag 'n' drop some files here, or click to select files</p>
-      }
-    </div>
             <Grid item xs={12} className={classes.signInGrid}>
               <Button type="submit">Create Post</Button>
             </Grid>

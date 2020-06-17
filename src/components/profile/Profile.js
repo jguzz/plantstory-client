@@ -5,12 +5,11 @@ import AllStories from "./AllStories";
 import CollectionList from "../collection/CollectionList";
 import Button from "@material-ui/core/Button";
 function Profile({handleChange, comments, commentPostId, comment, deleteComment, handleCommentSubmit, stories, collections, currentUser, currentAvatar, posts,likes, handleLike}) {
-  const userStories= stories.filter(story => story.user_id === currentUser.id)
-  const userPosts= posts.filter(post => post.user_id === currentUser.id)
+
   return (
     <>
     {currentUser?
-      <User stories={stories} posts={userPosts} currentUser={currentUser} currentAvatar={currentAvatar} />: <p>No user is signed in!!!!!</p>
+      <User currentUser={currentUser} currentAvatar={currentAvatar} />: <p>No user is signed in!!!!!</p>
     }
       <Button component={Link} to="/profile/stories">
         All Stories
