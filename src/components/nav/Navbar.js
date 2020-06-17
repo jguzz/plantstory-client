@@ -129,7 +129,7 @@ function NavBar() {
               />
               <Tab
                 component={Link}
-                to="/profile"
+                to="/profile/stories"
                 label="Profile"
                 value="Profile"
                 label={<LocalFloristIcon />}
