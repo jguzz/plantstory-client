@@ -30,10 +30,8 @@ function CollectionShow(props) {
   const classes = useStyles();
   return (
     <>
-      <h3>Collection Show</h3>
-      <p>{id}</p>
-      <p>{name}</p>
-      <p>{description}</p>
+      <Typography>{name}</Typography>
+      <Typography>{description}</Typography>
       <Grid
         spacing={4}
         className={classes.gridContainer}

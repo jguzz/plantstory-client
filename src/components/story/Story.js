@@ -126,7 +126,8 @@ function Story({
           ) : null}
 
           <CardContent>
-            <Typography>nickname: {nickname}</Typography>
+           {nickname?<Typography>nickname: {nickname}</Typography>:null}
+            
             <Grid
               container
               direction="row"
