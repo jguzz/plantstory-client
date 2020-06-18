@@ -19,7 +19,7 @@ import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 function storyPosts(posts, id) {
-  // console.log(posts)
+  console.log(posts)
   return posts ? posts.filter((post) => post.post.story_id === id) : [];
 }
 function numLikes(likes, post) {
@@ -45,7 +45,8 @@ const useStyles = makeStyles((theme) => ({
     minWidth: "100%",
     maxWidth: '100%',
     overflow: "hidden",
-    alignContent: 'center'
+    alignContent: 'center',
+    textAlign: 'center'
   },
 }));
 

@@ -234,7 +234,7 @@ class App extends React.Component {
     e.preventDefault();
     const { storyId, caption, posts, photo, userPosts } = this.state;
     const newPost = { story_id: storyId, caption: caption };
-    this.post(POST_URL, newPost).then((data) => this.uploadFile(photo, data))
+    this.post(POST_URL, newPost).then((data) => this.uploadFile(photo, data)).then(console.log9)
   };
   // sends file to active storage in the backend to update post with a photo
   uploadFile = (file, post) => {
@@ -256,8 +256,8 @@ class App extends React.Component {
             body: JSON.stringify({ post_img: blob.signed_id }),
           })
             .then((res) => res.json())
-            .then((post) =>
-              this.setState({ posts: [...this.state.posts, post] })
+            .then((posts) =>
+              this.setState({ posts: posts, userPosts: posts})
             );
     });
   };

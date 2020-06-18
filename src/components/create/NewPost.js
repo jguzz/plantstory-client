@@ -111,7 +111,7 @@ function NewPost({
                 <Select name={"storyId"} onChange={handleChange}>
                   {userStories.map((story) => (
                     <MenuItem value={story.id} name={storyId}>
-                      {story.nickname}
+                      {story.common_name}
                     </MenuItem>
                   ))}
                 </Select>
