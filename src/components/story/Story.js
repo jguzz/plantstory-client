@@ -92,7 +92,7 @@ function Story({
         <Card className={classes.root}>
           <CardHeader
             avatar={<Avatar></Avatar>}
-            title="usename"
+            title="luxor"
             subheader={created_at}
           />
           {/* {storyPosts(posts, id).map((post) =>
