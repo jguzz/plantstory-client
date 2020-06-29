@@ -1,19 +1,19 @@
-
 import React from "react";
 import Story from "../story/Story";
-import { makeStyles } from "@material-ui/core/styles";
 // Material UI
+import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
-import Typography from '@material-ui/core/Typography'
+import Typography from "@material-ui/core/Typography";
+import TextField from '@material-ui/core/TextField'
 
 const useStyles = makeStyles((theme) => ({
   gridContainer: {
-    width: '100%'
-  }
-}))
+    width: "100%",
+  },
+}));
 
-function MainFeed({
+function SearchResults({
   currentUser,
   handleChange,
   comments,
@@ -24,22 +24,30 @@ function MainFeed({
   stories,
   posts,
   handleLike,
-  likes, handleNext, handleBack, activeStep
+  likes,
+  searchTerm,
 }) {
   const classes = useStyles();
   return (
     <>
-    {/* <div className={classes.headingContainer}>
-    <Typography className={classes.heading} variant='h4'>
-      MainFeed
-    </Typography>
-    </div> */}
-      <Grid spacing={4} className={classes.gridContainer}direction="column" justify="space-between"  alignContent="center" container>
-        {stories.map((story) => (
-     
-
-          
-            <Story handleNext={handleNext} handleBack={handleBack} activeStep={activeStep}
+      <Grid
+        spacing={4}
+        className={classes.gridContainer}
+        direction="column"
+        justify="space-between"
+        alignContent="center"
+        container
+      >
+        <TextField
+          onChange={handleChange}
+          value={searchTerm}
+          label="searchTerm"
+          name="searchTerm"
+          type="text"
+        />
+        {stories.map((story) =>
+          story.common_name.includes(searchTerm) ? (
+            <Story
               currentUser={currentUser}
               handleChange={handleChange}
               comments={comments}
@@ -51,13 +59,12 @@ function MainFeed({
               likes={likes}
               {...story}
               posts={posts}
-              />
-          
-        ))}
-        
+            />
+          ) : null
+        )}
       </Grid>
     </>
   );
 }
 
-export default MainFeed;
+export default SearchResults;
