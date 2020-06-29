@@ -1,30 +1,33 @@
 ![Plantstory Logo](/public/Plantstory_favicon.png)
-Plantstory
+# Plantstory
 
 Social media website that allows users to categorize and share their collection of plants!
-A single page web application made with React and designed with Material UI, works with the Ruby on Rails [Plantstory API](https://github.com/jguzz/Plantstory_api) to provide data.
+A single page web application made with __React__ and designed with __Material UI__, works with the __Ruby on Rails__ [Plantstory API](https://github.com/jguzz/Plantstory_api) to provide data.
 
-Installation 
+## Installation 
 * Clone down the repo
 * Run npm install 
 * Run npm start 
 
-Usage 
-Plantstory allows users to create collections, Plantstories, and posts.
+## Usage 
+Plantstory allows users to create _collections_, _Plantstories_, and _posts_.
 
-Collections are where all of your plantstories will live, this is how you will catagorize your collections how you wish. For example indoor, outdoor, bedroom, kitchen, etc.
+_Collections_ are where all of your plantstories will live, this is how you will catagorize your collections how you wish. For example indoor, outdoor, bedroom, kitchen, etc.
 
-Plantstories are where each of your plants will live. You can provide some basic information about the kind of plant, and in which collection you would like it to be added to. 
+_Plantstories_ are where each of your plants will live. You can provide some basic information about the kind of plant, and in which collection you would like it to be added to. 
 
-Posts allow you to upload photos with caption to a plantstory. You can add as many posts as you would like to a story, the more the better!
+_Posts_ allow you to upload photos with caption to a plantstory. You can add as many posts as you would like to a story, the more the better!
 
 When viewing a Plantstory you have the ability to navigate through all of the posts. Each post has its own caption, like count, and comments.
 
 The profile page gives the user access to all of their stories as well as their collections. 
 
-Credits
+## Future scope
 
-MIT License
+## Credits
+Code written by Joseph A Guzzardo
+
+## MIT License
 
 Copyright (c) [2020] [Joseph A Guzzardo]
 
