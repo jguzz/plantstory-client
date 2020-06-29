@@ -1,6 +1,6 @@
-// ==== Create Container ====
-import React from "react";
+import React from 'react';
 import { Route, Switch, Link } from "react-router-dom";
+
 // components
 import NewStory from "./NewStory";
 import NewPost from "./NewPost";

@@ -6,11 +6,10 @@ import CollectionList from "../collection/CollectionList";
 import Button from "@material-ui/core/Button";
 function Profile({handleChange, comments, commentPostId, comment, deleteComment, handleCommentSubmit, stories, collections, currentUser, currentAvatar, posts,likes, handleLike}) {
 
+
   return (
     <>
-    {currentUser?
-      <User currentUser={currentUser} currentAvatar={currentAvatar} />: <p>No user is signed in!!!!!</p>
-    }
+      <User />
       <Button component={Link} to="/profile/stories">
         All Stories
       </Button>
