@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from "react";
 import Like from "./Like";
 import PostImg from "./PostImg";
@@ -177,17 +176,6 @@ function Story({
           </CardContent>
         </Card>
       </Grid>
-=======
-import React from 'react';
-import Post from './Post'
-
-function Story({acquiredOn,collection_id,created_at,id,nickname,owned,plant_id}) {
-  return (
-    <>
-    <p>nickname: {nickname}</p>
-    <p>Acquired on: {acquiredOn}</p>  
-    <Post/>
->>>>>>> master
     </>
   );
 }

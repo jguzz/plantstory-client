@@ -1,10 +1,6 @@
 import React from "react";
-<<<<<<< HEAD
 import { Route, Switch, Redirect } from "react-router-dom";
 import { DirectUpload } from "activestorage";
-=======
-import { Route, Switch } from "react-router-dom";
->>>>>>> master
 // Components
 import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";
@@ -14,7 +10,6 @@ import MainFeed from "./components/home/MainFeed";
 import Navbar from "./components/nav/Navbar";
 // import BottomNav from "./components/nav/BottomNav";
 import Profile from "./components/profile/Profile";
-<<<<<<< HEAD
 import { common } from "@material-ui/core/colors";
 import Search from "./components/search/Search";
 import { createMuiTheme } from "@material-ui/core";
@@ -29,23 +24,13 @@ const STORY_URL = `${BASE_URL}/stories`;
 const COLLECTION_URL = `${BASE_URL}/collections`;
 const LOGIN_URL = `${BASE_URL}/login`;
 const COMMENT_URL = `${BASE_URL}/comments`
-=======
-
-const BASE_URL = 'http://localhost:3000'
-const USER_URL = `${BASE_URL}/users`
-const PLANT_URL = `${BASE_URL}/plants`
-const LIKE_URL = `${BASE_URL}/likes`
-const POST_URL = `${BASE_URL}/posts`
-const STORY_URL = `${BASE_URL}/stories`
-const COLLECTION_URL = `${BASE_URL}/collections`
->>>>>>> master
 
 class App extends React.Component {
   state = {
+    // ==== Seeded through the backend api ====
     users: [],
     plants: [],
     stories: [],
-<<<<<<< HEAD
     collections: [],
     likes: [],
     posts: [],
@@ -82,17 +67,34 @@ class App extends React.Component {
   };
 
   // ==== Fetching ====
-=======
-    collections: []
-  }
-  //Fetching
->>>>>>> master
   componentDidMount() {
-    this.fetchAll()
+    this.fetchAll();
   }
+  // Post helper method
+  post = (url, data) => {
+    return fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(data),
+    }).then((res) => res.json());
+  };
+  // Put helper method
+  put = (url, data) => {
+    return fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(data),
+    }).then((res) => res.json);
+  };
+  // Fetch helper method
   fetch = (url, name) => {
     fetch(url)
-<<<<<<< HEAD
       .then((res) => res.json())
       .then((data) => this.setState({ [name]: data }));
   };
@@ -348,20 +350,6 @@ class App extends React.Component {
       searchTerm,
       activeStep
     } = this.state;
-=======
-    .then(res => res.json())
-    .then(data => this.setState({[name]: data}))
-  }
-  fetchAll = () => {
-    this.fetch(USER_URL, 'users')
-    this.fetch(PLANT_URL, 'plants')
-    this.fetch(LIKE_URL, 'likes')
-    this.fetch(POST_URL, 'posts')
-    this.fetch(STORY_URL, 'stories')
-    this.fetch(COLLECTION_URL, 'collections')
-  }
-  render() {
->>>>>>> master
     return (
       <Paper>
 
@@ -369,10 +357,17 @@ class App extends React.Component {
         <Navbar handleSearchChange={this.handleSearchChange} />
    
         <Switch>
-          <Route path="/login" render={() => <Login />} />
+          <Route
+            path="/login"
+            render={() => (
+              <Login
+                handleLoginSubmit={this.handleLoginSubmit}
+                handleChange={this.handleChange}
+              />
+            )}
+          />
           <Route path="/signup" render={() => <Signup />} />
           <Route path="/newPost" render={() => <NewPost />} />
-<<<<<<< HEAD
           <Route
             path="/create"
             render={() => (
@@ -420,11 +415,6 @@ class App extends React.Component {
           render={() => (
             <Search currentUser={currentUser}   handleChange={this.handleChange} comments={comments} commentPostId={commentPostId} comment={comment} deleteComment={this.deleteComment} handleCommentSubmit={this.handleCommentSubmit} likes={likes} handleLike={this.handleLike} posts={posts} stories={this.state.stories} searchTerm={searchTerm} handleChange={this.handleChange}/>
           )} />
-=======
-          <Route path="/create" render={() => <CreateContainer />} />
-          <Route path="/mainfeed" render={() => <MainFeed stories={this.state.stories}/>} />
-          <Route path="/profile" render={() => <Profile stories={this.state.stories} collections={this.state.collections} />} />
->>>>>>> master
         </Switch>
       
         {/* <BottomNav  /> */}

@@ -1,5 +1,7 @@
 import React from 'react';
 import CollectionShow from './CollectionShow'
+import { Route, Switch, Link } from "react-router-dom";
+import Collection from './Collection'
 
 
 function CollectionList({currentUser, handleChange, comments, commentPostId, comment, deleteComment, handleCommentSubmit,collections, stories,posts, likes, handleLike}) {
