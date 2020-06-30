@@ -1,16 +1,19 @@
-![Plantstory Logo](/public/Plantstory_favicon.png)
+![Plantstory Logo](./public/readme/Main.png)
 # Plantstory
 
 Social media website that allows users to categorize and share their collection of plants!
 A single page web application made with __React__ and designed with __Material UI__, works with the __Ruby on Rails__ [Plantstory API](https://github.com/jguzz/Plantstory_api) to provide data.
 
 ## Installation 
-* Clone down the repo
-* Run npm install 
-* Run npm start 
+* Clone down the repu using `git clone https://github.com/jguzz/plantstory-client.git`
+* Run `npm install` 
+* Run `npm start`
+* Ensure that you have the [backend](https://github.com/jguzz/Plantstory_api) running!
 
-## Usage 
+## Usage & Features
 Plantstory allows users to create _collections_, _Plantstories_, and _posts_.
+
+![Demo of create Collection, create Story, create Post](./public/readme/Create.gif)
 
 _Collections_ are where all of your plantstories will live, this is how you will catagorize your collections how you wish. For example indoor, outdoor, bedroom, kitchen, etc.
 
@@ -18,14 +21,33 @@ _Plantstories_ are where each of your plants will live. You can provide some bas
 
 _Posts_ allow you to upload photos with caption to a plantstory. You can add as many posts as you would like to a story, the more the better!
 
-When viewing a Plantstory you have the ability to navigate through all of the posts. Each post has its own caption, like count, and comments.
+* When viewing a Plantstory you have the ability to navigate through all of the posts. Each post has its own caption, like count, and comments.
+![Plantstory demo navigating through posts](./public/readme/Plantstory.gif)
 
-The profile page gives the user access to all of their stories as well as their collections. 
+<!-- The profile page gives the user access to all of their stories as well as their collections.  -->
+* By clicking on the search icon in the top bar you can search through all of the Plantstories on the website.
+![Search demo](./public/readme/Plantsearch.gif)
 
-## Future scope
+<!-- ## Future scope
+Many features will be added in the future including...
+* Dropzone support for photo uploads
+* Follow friends -->
+
+## Contribute 
+To contribute to Plantstory, follow these steps:
+- Fork this repository.
+- Create a branch: `git checkout -b <branch_name>`
+- Make your changes and commit them: `git commit -m '[commit_message]'`
+- Push to the original branch: `git push origin [project_name]/[location]`
+- Create the pull request.
+
+Alternatively see the GitHub documentation on [creating a pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
 
 ## Credits
 Code written by Joseph A Guzzardo
+- [LinkedIn](https://www.linkedin.com/in/osgood-gunawan-973a5993/)
+- [Email](https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&to=joseph.a.guzzardo@gmail.com)
+- [Github](https://github.com/jguzz)
 
 ## MIT License
 
