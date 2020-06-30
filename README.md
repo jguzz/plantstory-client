@@ -22,10 +22,12 @@ _Plantstories_ are where each of your plants will live. You can provide some bas
 _Posts_ allow you to upload photos with caption to a plantstory. You can add as many posts as you would like to a story, the more the better!
 
 * When viewing a Plantstory you have the ability to navigate through all of the posts. Each post has its own caption, like count, and comments.
+
 ![Plantstory demo navigating through posts](./public/readme/Plantstory.gif)
 
 <!-- The profile page gives the user access to all of their stories as well as their collections.  -->
 * By clicking on the search icon in the top bar you can search through all of the Plantstories on the website.
+
 ![Search demo](./public/readme/PlantSearch.gif)
 
 <!-- ## Future scope
