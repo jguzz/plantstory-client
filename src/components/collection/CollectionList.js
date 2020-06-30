@@ -23,48 +23,47 @@ function CollectionList({
 }) {
   return (
     <>
-      <Typography variant="h4" style={{ textAlign: 'center', color: '#00b359'}} >Collections</Typography>
-
       <Switch>
         <Route
           exact
           path={`/profile/collection_list/:id`}
           render={(collection) => (
             <CollectionShow
-              currentUser={currentUser}
-              handleChange={handleChange}
-              comments={comments}
-              commentPostId={commentPostId}
-              comment={comment}
-              deleteComment={deleteComment}
-              handleCommentSubmit={handleCommentSubmit}
-              likes={likes}
-              handleLike={handleLike}
-              stories={stories}
-              posts={posts}
-              {...collection}
+            currentUser={currentUser}
+            handleChange={handleChange}
+            comments={comments}
+            commentPostId={commentPostId}
+            comment={comment}
+            deleteComment={deleteComment}
+            handleCommentSubmit={handleCommentSubmit}
+            likes={likes}
+            handleLike={handleLike}
+            stories={stories}
+            posts={posts}
+            {...collection}
             />
-          )}
+            )}
         />
         <Route
           exact
           path="/profile/collection_list"
           render={() => (
             <Grid
-              container
-              direction="row"
-              justify="space-evenly"
-              alignItems="baseline"
+            container
+            direction="row"
+            justify="space-evenly"
+            alignItems="baseline"
             >
+              <Typography variant="h4" style={{ textAlign: 'center', color: '#00b359'}} >Collections</Typography>
               {collections.map((collection) => (
                 <Collection
-                  likes={likes}
-                  key={collection.id}
-                  {...collection}
-                  posts={posts}
-                  stories={stories}
+                likes={likes}
+                key={collection.id}
+                {...collection}
+                posts={posts}
+                stories={stories}
                 />
-              ))}
+                ))}
             </Grid>
           )}
         />

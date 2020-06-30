@@ -33,7 +33,7 @@ function Collection({
   const classes = useStyles()
   return (
     <>
-  
+       
       <Grid item xs={12}>
         <Card
         className={classes.card}

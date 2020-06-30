@@ -31,8 +31,8 @@ function CollectionShow(props) {
   const classes = useStyles();
   return (
     <>
-      <Typography>{name}</Typography>
-      <Typography>{description}</Typography>
+      <Typography style={{ textAlign: 'center', color: '#585858'}} variant="h4">{name}</Typography>
+      <Typography style={{ textAlign: 'center', color: '#00b359'}} variant="subtitle1">{description}</Typography>
       <Grid
         spacing={4}
         className={classes.gridContainer}
