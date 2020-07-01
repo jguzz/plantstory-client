@@ -38,7 +38,7 @@ Many features will be added in the future including...
 * Follow friends -->
 ## Credits
 Code written by Joseph A Guzzardo
-- [LinkedIn](https://www.linkedin.com/in/osgood-gunawan-973a5993/)
+- [LinkedIn](https://www.linkedin.com/in/joseph-a-guzzardo/)
 - [Github](https://github.com/jguzz)
 - [Email](https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&to=joseph.a.guzzardo@gmail.com)
 
