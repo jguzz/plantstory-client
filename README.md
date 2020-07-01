@@ -1,11 +1,13 @@
-![Plantstory Logo](./public/readme/Main.png)
+![Plantstory Main Feed](./public/readme/Main.png)
 # Plantstory
 
 Social media website that allows users to categorize and share their collection of plants!
 A single page web application made with __React__ and designed with __Material UI__, works with the __Ruby on Rails__ [Plantstory API](https://github.com/jguzz/Plantstory_api) to provide data.
 
+A video demo can be found [here](https://youtu.be/SrtUxy3YXQA)!
+
 ## Installation 
-* Clone down the repu using `git clone https://github.com/jguzz/plantstory-client.git`
+* Clone down the repo using `git clone https://github.com/jguzz/plantstory-client.git`
 * Run `npm install` 
 * Run `npm start`
 * Ensure that you have the [backend](https://github.com/jguzz/Plantstory_api) running!
@@ -34,6 +36,11 @@ _Posts_ allow you to upload photos with caption to a plantstory. You can add as 
 Many features will be added in the future including...
 * Dropzone support for photo uploads
 * Follow friends -->
+## Credits
+Code written by Joseph A Guzzardo
+- [LinkedIn](https://www.linkedin.com/in/osgood-gunawan-973a5993/)
+- [Github](https://github.com/jguzz)
+- [Email](https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&to=joseph.a.guzzardo@gmail.com)
 
 ## Contribute 
 To contribute to Plantstory, follow these steps:
@@ -45,11 +52,6 @@ To contribute to Plantstory, follow these steps:
 
 Alternatively see the GitHub documentation on [creating a pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
 
-## Credits
-Code written by Joseph A Guzzardo
-- [LinkedIn](https://www.linkedin.com/in/osgood-gunawan-973a5993/)
-- [Email](https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&to=joseph.a.guzzardo@gmail.com)
-- [Github](https://github.com/jguzz)
 
 ## MIT License
 
