@@ -1,5 +1,6 @@
-![Plantstory Main Feed](./public/readme/Main.png)
 # Plantstory
+
+![Plantstory Main Feed](./public/readme/Main.png)
 
 Social media website that allows users to categorize and share their collection of plants!
 A single page web application made with __React__ and designed with __Material UI__, works with the __Ruby on Rails__ [Plantstory API](https://github.com/jguzz/Plantstory_api) to provide data.
