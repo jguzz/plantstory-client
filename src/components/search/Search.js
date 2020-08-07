@@ -46,7 +46,7 @@ function SearchResults({
           type="text"
         />
         {stories.map((story) =>
-          story.common_name.includes(searchTerm) ? (
+          story.common_name.includes(searchTerm) || story.latin_name.includes(searchTerm) ? (
             <Story
               currentUser={currentUser}
               handleChange={handleChange}
