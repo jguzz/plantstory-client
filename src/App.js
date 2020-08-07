@@ -61,7 +61,7 @@ class App extends React.Component {
     commentPostId: null,
     comment: '',
     // Search
-    searchTerm: null,
+    searchTerm: '',
     //Stepper
     activeStep: 0,
   };
