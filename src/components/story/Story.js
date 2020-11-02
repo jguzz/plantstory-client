@@ -18,6 +18,9 @@ import Button from "@material-ui/core/Button";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import FavoriteIcon from "@material-ui/icons/Favorite";
+
+const BASE_URL = "https://pure-springs-07705.herokuapp.com/"
+
 function storyPosts(posts, id) {
   console.log(posts)
   return posts ? posts.filter((post) => post.post.story_id === id) : [];
@@ -112,7 +115,7 @@ function Story({
               <div className={classes.imgDiv}>
                 <img
                   className={classes.img}
-                  src={`http://localhost:3000/${currentPosts[activeStep].post_img}`}
+                  src={`${BASE_URL}${currentPosts[activeStep].post_img}`}
                   alt={currentPosts[activeStep].caption}
                 />
               </div>

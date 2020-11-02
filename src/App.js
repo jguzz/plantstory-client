@@ -1,21 +1,22 @@
 import React from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import { DirectUpload } from "activestorage";
-// Components
+// ==== Components ====
 import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";
 import NewPost from "./components/create/NewPost";
 import CreateContainer from "./components/create/CreateContainer";
 import MainFeed from "./components/home/MainFeed";
 import Navbar from "./components/nav/Navbar";
-// import BottomNav from "./components/nav/BottomNav";
 import Profile from "./components/profile/Profile";
-import { common } from "@material-ui/core/colors";
 import Search from "./components/search/Search";
+// ==== Material UI ====
+import { common } from "@material-ui/core/colors";
 import { createMuiTheme } from "@material-ui/core";
 import Paper from '@material-ui/core/Paper'
 
-const BASE_URL = "http://localhost:3000";
+// Fetch URLS  
+const BASE_URL = "https://pure-springs-07705.herokuapp.com/";
 const USER_URL = `${BASE_URL}/users`;
 const PLANT_URL = `${BASE_URL}/plants`;
 const LIKE_URL = `${BASE_URL}/likes`;
@@ -66,7 +67,7 @@ class App extends React.Component {
     activeStep: 0,
   };
 
-  // ==== Fetching ====
+  // ==== Fetching Methods ====
   componentDidMount() {
     this.fetchAll();
   }
@@ -98,6 +99,7 @@ class App extends React.Component {
       .then((res) => res.json())
       .then((data) => this.setState({ [name]: data }));
   };
+  // Delete helper method
   delete =(url, id) => {
     return fetch(`${url}/${id}`, {
       method: "delete",
@@ -124,7 +126,7 @@ class App extends React.Component {
   // ========== FORM ===========
   // Handle change helper method
   handleChange = (e) => {
-
+    // Checks if the event is for photo uploads
     e.target.name === "photo"
       ? this.setState({
           [e.target.name]: e.target.files[0],
@@ -136,13 +138,10 @@ class App extends React.Component {
   // Handle submit helper method
   handleLoginSubmit = (e) => {
     e.preventDefault();
-    console.log("in handle submit.");
-
     const user = {
       username: this.state.username,
       password: this.state.password,
     };
-
     this.post(LOGIN_URL, user).then((data) => this.setCurrentUser(data));
   };
 
