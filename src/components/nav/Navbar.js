@@ -2,7 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 //Material UI
-import MenuIcon from "@material-ui/icons/Menu";
+// import MenuIcon from "@material-ui/icons/Menu";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -11,11 +11,11 @@ import IconButton from "@material-ui/core/IconButton";
 // import MenuItem from "@material-ui/core/MenuItem"
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
+// import TextField from "@material-ui/core/TextField";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import Box from "@material-ui/core/Box";
-import Paper from "@material-ui/core/Paper";
+// import Box from "@material-ui/core/Box";
+// import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 // icons
 import Home from "@material-ui/icons/Home";
@@ -101,11 +101,7 @@ function NavBar() {
           <Toolbar>
             <Tabs
               className={classes.tabs}
-              flexGrow
               variant="fullWidth"
-              indicatorColor="primary"
-              textColor="light"
-              centered
             >
               <Tab
                 component={Link}

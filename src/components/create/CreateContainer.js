@@ -38,11 +38,7 @@ function CreateContainer({
           <Toolbar>
             <Tabs
               style={{ flexGrow: 1 }}
-              flexGrow
               variant="fullWidth"
-              indicatorColor="primary"
-              textColor="light"
-              centered
             >
               <Tab
                 label="Create a Collection"

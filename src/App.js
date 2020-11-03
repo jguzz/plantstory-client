@@ -12,8 +12,8 @@ import Profile from "./components/profile/Profile";
 import Search from "./components/search/Search";
 import Welcome from "./components/home/Welcome"
 // ==== Material UI ====
-import { common } from "@material-ui/core/colors";
-import { createMuiTheme } from "@material-ui/core";
+// import { common } from "@material-ui/core/colors";
+// import { createMuiTheme } from "@material-ui/core";
 import Paper from '@material-ui/core/Paper'
 
 // Fetch URLS  
@@ -178,8 +178,8 @@ class App extends React.Component {
       });
   };
   getStories = () => {
-    const {stories, posts, collections} = this.state 
-    const idk = stories.filter(story=>  posts.filter(post => post.story_id === story.id))
+    // const {stories, posts, collections} = this.state 
+    // const idk = stories.filter(story=>  posts.filter(post => post.story_id === story.id))
   }
 
   // ==== Create ====
