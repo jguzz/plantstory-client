@@ -91,7 +91,7 @@ function Story({
 
   return (
     <>
-      <Grid item xs={6}>
+      <Grid item xs={10} s={6}>
         <Card className={classes.root}>
           <CardHeader
             avatar={<Avatar></Avatar>}

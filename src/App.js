@@ -10,6 +10,7 @@ import MainFeed from "./components/home/MainFeed";
 import Navbar from "./components/nav/Navbar";
 import Profile from "./components/profile/Profile";
 import Search from "./components/search/Search";
+import Welcome from "./components/home/Welcome"
 // ==== Material UI ====
 import { common } from "@material-ui/core/colors";
 import { createMuiTheme } from "@material-ui/core";
@@ -414,6 +415,10 @@ class App extends React.Component {
           render={() => (
             <Search currentUser={currentUser}   handleChange={this.handleChange} comments={comments} commentPostId={commentPostId} comment={comment} deleteComment={this.deleteComment} handleCommentSubmit={this.handleCommentSubmit} likes={likes} handleLike={this.handleLike} posts={posts} stories={this.state.stories} searchTerm={searchTerm} handleChange={this.handleChange}/>
           )} />
+          <Route path="/"
+          render={() => (
+            <Welcome/>
+          )}/>
         </Switch>
       
         {/* <BottomNav  /> */}
