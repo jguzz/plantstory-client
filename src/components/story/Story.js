@@ -1,7 +1,7 @@
 import React from "react";
 import Like from "./Like";
 import PostImg from "./PostImg";
-import SwipeableViews from "react-swipeable-views";
+// import SwipeableViews from "react-swipeable-views";
 import Stepper from "./Stepper";
 import Comment from './Comment'
 //  Material UI

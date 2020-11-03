@@ -22,7 +22,7 @@ const useStyles = makeStyles({
   },
   input: {
     margin: "auto",
-    width: "100%",
+    minWidth: "100vw",
     textAlign: "center",
   },
   button: {

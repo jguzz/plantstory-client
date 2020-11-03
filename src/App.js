@@ -354,23 +354,25 @@ class App extends React.Component {
       <Paper>
 
         
-        <Navbar handleSearchChange={this.handleSearchChange} />
    
         <Switch>
           <Route
             path="/login"
             render={() => (
+          <>    <Navbar handleSearchChange={this.handleSearchChange} />
               <Login
                 handleLoginSubmit={this.handleLoginSubmit}
                 handleChange={this.handleChange}
-              />
+              /></>
             )}
           />
-          <Route path="/signup" render={() => <Signup />} />
-          <Route path="/newPost" render={() => <NewPost />} />
+          <Route path="/signup" render={() => <><Navbar handleSearchChange={this.handleSearchChange} /><Signup /></>} />
+          <Route path="/newPost" render={() => <><Navbar handleSearchChange={this.handleSearchChange} /><NewPost /></>} />
           <Route
             path="/create"
             render={() => (
+              <>
+              <Navbar handleSearchChange={this.handleSearchChange} />
               <CreateContainer
                 createPostSubmit={this.createPostSubmit}
                 createStorySubmit={this.createStorySubmit}
@@ -391,15 +393,18 @@ class App extends React.Component {
                 userPosts= {userPosts}
                 userStories={userStories}
               />
+              </>
             )}
           />
           <Route
             path="/mainfeed"
-            render={() => <MainFeed handleNext={this.handleNext} handleBack={this.handleBack} activeStep={activeStep} currentUser={currentUser}   handleChange={this.handleChange} comments={comments} commentPostId={commentPostId} comment={comment} deleteComment={this.deleteComment} handleCommentSubmit={this.handleCommentSubmit} likes={likes} handleLike={this.handleLike} posts={posts} stories={this.state.stories} />}
+            render={() => <> <Navbar handleSearchChange={this.handleSearchChange} /> <MainFeed handleNext={this.handleNext} handleBack={this.handleBack} activeStep={activeStep} currentUser={currentUser}   handleChange={this.handleChange} comments={comments} commentPostId={commentPostId} comment={comment} deleteComment={this.deleteComment} handleCommentSubmit={this.handleCommentSubmit} likes={likes} handleLike={this.handleLike} posts={posts} stories={this.state.stories} /></>}
           />
           <Route
             path="/profile"
             render={() => (
+              <>
+              <Navbar handleSearchChange={this.handleSearchChange} />
               <Profile
               comments={comments} commentPostId={commentPostId} comment={comment} deleteComment={this.deleteComment} handleCommentSubmit={this.handleCommentSubmit} handleChange={this.handleChange}
                 posts={userPosts}
@@ -409,11 +414,15 @@ class App extends React.Component {
                 currentAvatar={currentAvatar}
                 likes={likes} handleLike={this.handleLike}
               />
+              </>
             )}
           />
           <Route path="/search"
           render={() => (
+            <>
+            <Navbar handleSearchChange={this.handleSearchChange} />
             <Search currentUser={currentUser}   handleChange={this.handleChange} comments={comments} commentPostId={commentPostId} comment={comment} deleteComment={this.deleteComment} handleCommentSubmit={this.handleCommentSubmit} likes={likes} handleLike={this.handleLike} posts={posts} stories={this.state.stories} searchTerm={searchTerm} handleChange={this.handleChange}/>
+            </>
           )} />
           <Route path="/"
           render={() => (

@@ -40,7 +40,9 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
   },
   logo: {
-    margin: "auto"
+    textDecoration: 'none',
+    margin: "auto",
+    color: "white",
   },
   logoGrid: {
     textAlign: 'center'
@@ -75,7 +77,7 @@ function NavBar() {
               <Grid item xs={4}></Grid>
               <Grid item xs={4} className={classes.logoGrid}>
                 {/* <img className={classes.logoImg} src={`http://localhost:3000/Plantstory.png`} alt="plantstory logo... a plant growing in a pink gem pot." /> */}
-                <Typography className={classes.logo} variant="h4">
+                <Typography component={Link} to="/" className={classes.logo} variant="h4">
                   Plantstory
                 </Typography>
               </Grid>
