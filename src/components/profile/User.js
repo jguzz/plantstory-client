@@ -1,10 +1,13 @@
 import React from 'react';
 
-function User() {
+const BASE_URL = "https://pure-springs-07705.herokuapp.com/";
+
+function User({currentUser, currentAvatar}) {
   return (
-    <>User 
-	Profile Pic
-	Username
+  <> 
+  <p>{currentUser.name}</p> 
+	<img src={`${BASE_URL}${currentAvatar}`} alt="avatar img"/>
+	@{currentUser.username}
 	</>
   );
 }

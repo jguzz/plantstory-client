@@ -22,7 +22,7 @@ const useStyles = makeStyles({
   },
   input: {
     margin: "auto",
-    width: "100%",
+    minWidth: "100vw",
     textAlign: "center",
   },
   button: {
@@ -57,7 +57,6 @@ function Login({ handleChange, handleLoginSubmit }) {
           flexDirection: "column",
           alignContent: "center",
           margin: "auto",
-          padding: "10em",
         }}
       >
         <form

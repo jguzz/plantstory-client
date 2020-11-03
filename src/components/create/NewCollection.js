@@ -10,6 +10,9 @@ import Container from "@material-ui/core/Container";
 
 
 const useStyles = makeStyles({
+  container: {
+    minWidth: '100vw'
+  },
   form: {
     flexGrow: 1,
     minHeight: "30em",
@@ -58,11 +61,11 @@ function NewCollection({
   return (
     <>
       <Container
+        className={classes.container}
         style={{
           flexDirection: "column",
           alignContent: "center",
           margin: "auto",
-          padding: "10em",
         }}
       >
         <form

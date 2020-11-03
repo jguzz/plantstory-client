@@ -1,7 +1,7 @@
 import React from "react";
 import Like from "./Like";
 import PostImg from "./PostImg";
-import SwipeableViews from "react-swipeable-views";
+// import SwipeableViews from "react-swipeable-views";
 import Stepper from "./Stepper";
 import Comment from './Comment'
 //  Material UI
@@ -22,12 +22,10 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 const BASE_URL = "https://pure-springs-07705.herokuapp.com/"
 
 function storyPosts(posts, id) {
-  console.log(posts)
   return posts ? posts.filter((post) => post.post.story_id === id) : [];
 }
 function numLikes(likes, post) {
   const num = likes.filter((like) => like.post_id === post.id);
-  console.log(num, post.id);
   return num.length;
 }
 const useStyles = makeStyles((theme) => ({
@@ -72,6 +70,7 @@ function Story({
   handleLike,
   likes,
   currentUser,
+  story
 }) {
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -91,25 +90,13 @@ function Story({
 
   return (
     <>
-      <Grid item xs={6}>
+      <Grid item xs={12} s={6}>
         <Card className={classes.root}>
           <CardHeader
-            avatar={<Avatar></Avatar>}
+            avatar={<Avatar/>}
             title="luxor"
             subheader={created_at}
           />
-          {/* {storyPosts(posts, id).map((post) =>
-            post.post_img ? (
-              <PostImg
-                handleNext={handleNext}
-                handleBack={handleBack}
-              
-                post={post}
-                key={id}
-              />
-            ) : null
-          )} */}
-
           {currentPosts[activeStep] ? (
             <div>
               <div className={classes.imgDiv}>
@@ -128,10 +115,8 @@ function Story({
               />
             </div>
           ) : null}
-
           <CardContent>
            {nickname?<Typography>nickname: {nickname}</Typography>:null}
-            
             <Grid
               container
               direction="row"

@@ -10,9 +10,10 @@ import MainFeed from "./components/home/MainFeed";
 import Navbar from "./components/nav/Navbar";
 import Profile from "./components/profile/Profile";
 import Search from "./components/search/Search";
+import Welcome from "./components/home/Welcome"
 // ==== Material UI ====
-import { common } from "@material-ui/core/colors";
-import { createMuiTheme } from "@material-ui/core";
+// import { common } from "@material-ui/core/colors";
+// import { createMuiTheme } from "@material-ui/core";
 import Paper from '@material-ui/core/Paper'
 
 // Fetch URLS  
@@ -175,13 +176,10 @@ class App extends React.Component {
         userCollections: userCollections,
         userPosts: userPosts,
       });
-    
-    console.log("uc", userCollections, "us", userStories);
   };
   getStories = () => {
-    const {stories, posts, collections} = this.state 
-    const idk = stories.filter(story=>  posts.filter(post => post.story_id === story.id))
-    console.log('idk', idk)
+    // const {stories, posts, collections} = this.state 
+    // const idk = stories.filter(story=>  posts.filter(post => post.story_id === story.id))
   }
 
   // ==== Create ====
@@ -243,7 +241,6 @@ class App extends React.Component {
       "http://localhost:3000/rails/active_storage/direct_uploads"
     );
     upload.create((error, blob) => {
-      console.log({ post_img: blob.signed_id });
       error
         ? console.log(error)
         : fetch(`${BASE_URL}/posts/${post.id}`, {
@@ -351,25 +348,26 @@ class App extends React.Component {
     } = this.state;
     return (
       <Paper>
-
-        
-        <Navbar handleSearchChange={this.handleSearchChange} />
-   
         <Switch>
           <Route
             path="/login"
             render={() => (
-              <Login
-                handleLoginSubmit={this.handleLoginSubmit}
-                handleChange={this.handleChange}
-              />
+              <>    
+                <Navbar handleSearchChange={this.handleSearchChange} />
+                <Login
+                  handleLoginSubmit={this.handleLoginSubmit}
+                  handleChange={this.handleChange}
+                  />
+              </>
             )}
           />
-          <Route path="/signup" render={() => <Signup />} />
-          <Route path="/newPost" render={() => <NewPost />} />
+          <Route path="/signup" render={() => <><Navbar handleSearchChange={this.handleSearchChange} /><Signup /></>} />
+          <Route path="/newPost" render={() => <><Navbar handleSearchChange={this.handleSearchChange} /><NewPost /></>} />
           <Route
             path="/create"
             render={() => (
+              <>
+              <Navbar handleSearchChange={this.handleSearchChange} />
               <CreateContainer
                 createPostSubmit={this.createPostSubmit}
                 createStorySubmit={this.createStorySubmit}
@@ -390,15 +388,18 @@ class App extends React.Component {
                 userPosts= {userPosts}
                 userStories={userStories}
               />
+              </>
             )}
           />
           <Route
             path="/mainfeed"
-            render={() => <MainFeed handleNext={this.handleNext} handleBack={this.handleBack} activeStep={activeStep} currentUser={currentUser}   handleChange={this.handleChange} comments={comments} commentPostId={commentPostId} comment={comment} deleteComment={this.deleteComment} handleCommentSubmit={this.handleCommentSubmit} likes={likes} handleLike={this.handleLike} posts={posts} stories={this.state.stories} />}
+            render={() => <> <Navbar handleSearchChange={this.handleSearchChange} /> <MainFeed handleNext={this.handleNext} handleBack={this.handleBack} activeStep={activeStep} currentUser={currentUser}   handleChange={this.handleChange} comments={comments} commentPostId={commentPostId} comment={comment} deleteComment={this.deleteComment} handleCommentSubmit={this.handleCommentSubmit} likes={likes} handleLike={this.handleLike} posts={posts} stories={this.state.stories} /></>}
           />
           <Route
             path="/profile"
             render={() => (
+              <>
+              <Navbar handleSearchChange={this.handleSearchChange} />
               <Profile
               comments={comments} commentPostId={commentPostId} comment={comment} deleteComment={this.deleteComment} handleCommentSubmit={this.handleCommentSubmit} handleChange={this.handleChange}
                 posts={userPosts}
@@ -408,12 +409,20 @@ class App extends React.Component {
                 currentAvatar={currentAvatar}
                 likes={likes} handleLike={this.handleLike}
               />
+              </>
             )}
           />
           <Route path="/search"
           render={() => (
+            <>
+            <Navbar handleSearchChange={this.handleSearchChange} />
             <Search currentUser={currentUser}   handleChange={this.handleChange} comments={comments} commentPostId={commentPostId} comment={comment} deleteComment={this.deleteComment} handleCommentSubmit={this.handleCommentSubmit} likes={likes} handleLike={this.handleLike} posts={posts} stories={this.state.stories} searchTerm={searchTerm} handleChange={this.handleChange}/>
+            </>
           )} />
+          <Route path="/"
+          render={() => (
+            <Welcome/>
+          )}/>
         </Switch>
       
         {/* <BottomNav  /> */}

@@ -6,7 +6,6 @@ import Comment from './Comment'
 
 function numLikes(likes, post){
   const num = likes.filter(like => like.post_id === post.id)
-  console.log(num, post.id)
   return num.length
 }
 
