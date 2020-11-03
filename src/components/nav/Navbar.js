@@ -62,7 +62,6 @@ const useStyles = makeStyles((theme) => ({
 
 function NavBar() {
   const classes = useStyles();
-  console.log(classes)
   return (
     <>
       <div className={classes.root}/>

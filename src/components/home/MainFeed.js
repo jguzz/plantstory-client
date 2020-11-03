@@ -39,7 +39,7 @@ function MainFeed({
      
 
           
-            <Story handleNext={handleNext} handleBack={handleBack} activeStep={activeStep}
+            <Story story={story} handleNext={handleNext} handleBack={handleBack} activeStep={activeStep}
               currentUser={currentUser}
               handleChange={handleChange}
               comments={comments}

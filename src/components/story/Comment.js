@@ -6,7 +6,6 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
 function Comment({currentUser, handleChange, comments, commentPostId, comment, deleteComment, handleCommentSubmit,postId}) {
-  // console.log(comments)
   return (
     <>
     <form onChange={handleChange} onSubmit={(e => handleCommentSubmit(e,postId))}>

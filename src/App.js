@@ -176,13 +176,10 @@ class App extends React.Component {
         userCollections: userCollections,
         userPosts: userPosts,
       });
-    
-    console.log("uc", userCollections, "us", userStories);
   };
   getStories = () => {
     const {stories, posts, collections} = this.state 
     const idk = stories.filter(story=>  posts.filter(post => post.story_id === story.id))
-    console.log('idk', idk)
   }
 
   // ==== Create ====
@@ -244,7 +241,6 @@ class App extends React.Component {
       "http://localhost:3000/rails/active_storage/direct_uploads"
     );
     upload.create((error, blob) => {
-      console.log({ post_img: blob.signed_id });
       error
         ? console.log(error)
         : fetch(`${BASE_URL}/posts/${post.id}`, {
@@ -352,9 +348,6 @@ class App extends React.Component {
     } = this.state;
     return (
       <Paper>
-
-        
-   
         <Switch>
           <Route
             path="/login"
