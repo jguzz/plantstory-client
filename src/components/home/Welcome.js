@@ -29,6 +29,7 @@ const useStyles = makeStyles(() => ({
 		minWidth: '100vw',
 		margin: 'auto',
 		// zIndex: -2,
+		background: 'black'
 	},
 	credit: {
 		position: 'fixed',
@@ -68,7 +69,7 @@ const useStyles = makeStyles(() => ({
 		textAlign: 'center',
 		margin: 'auto',
 		paddingBottom: '1em'
-	}
+	} 
 }));
 
 function Welcome(){

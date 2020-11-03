@@ -57,7 +57,6 @@ function Login({ handleChange, handleLoginSubmit }) {
           flexDirection: "column",
           alignContent: "center",
           margin: "auto",
-          padding: "10em",
         }}
       >
         <form

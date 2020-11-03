@@ -359,11 +359,13 @@ class App extends React.Component {
           <Route
             path="/login"
             render={() => (
-          <>    <Navbar handleSearchChange={this.handleSearchChange} />
-              <Login
-                handleLoginSubmit={this.handleLoginSubmit}
-                handleChange={this.handleChange}
-              /></>
+              <>    
+                <Navbar handleSearchChange={this.handleSearchChange} />
+                <Login
+                  handleLoginSubmit={this.handleLoginSubmit}
+                  handleChange={this.handleChange}
+                  />
+              </>
             )}
           />
           <Route path="/signup" render={() => <><Navbar handleSearchChange={this.handleSearchChange} /><Signup /></>} />

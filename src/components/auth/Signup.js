@@ -66,8 +66,7 @@ function Signup() {
         style={{
           flexDirection: "column",
           alignContent: "center",
-          margin: "auto",
-          padding: "10em",
+          margin: "auto"
         }}
       >
         <form className={classes.form}>
@@ -147,7 +146,6 @@ function Signup() {
           </Grid>
         </form>
       </Container>
-      <Link to="/login">Have an account? Log in here!</Link>
     </>
   );
 }
