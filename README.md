@@ -5,7 +5,7 @@
 Social media website that allows users to categorize and share their collection of plants!
 A single page web application made with __React__ and designed with __Material UI__, works with the __Ruby on Rails__ [Plantstory API](https://github.com/jguzz/Plantstory_api) to provide data.
 
-A live version of the app is running [here](https://plantstory.netlify.app/)!
+A live version of the app is running [here](https://plantstory.netlify.app/)! <br/>
 A video demo can be found [here](https://youtu.be/SrtUxy3YXQA)!
 
 ## Installation 
