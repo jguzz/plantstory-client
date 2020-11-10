@@ -38,6 +38,13 @@ const useStyles = makeStyles(() => ({
 		margin: 'auto',
 		right: 0
 	},
+	joey: {
+		position: 'fixed',
+		bottom: 0,
+		left: 0,
+		color: 'white',
+		margin: 'auto'
+	},
 	container: {
 		background: `rgb(235, 237, 235, .2)`,
 		position: 'relative',
@@ -62,7 +69,7 @@ const useStyles = makeStyles(() => ({
 	button: {
 		background: 'rgb(6, 61, 18, .8)',
 		color: 'white',
-		minWidth: '20em'
+		minWidth: '20em',
 	},
 	detail: {
 		color: 'white',
@@ -90,6 +97,7 @@ function Welcome(){
 				<Button component={Link} to="/login" className={classes.button}>Log In</Button>
 				<Button component={Link} to="/signup" className={classes.button}>Create Account</Button>
 			</Grid>
+			<span className={classes.joey}>PlantStory engineered by <a style={{color: 'green'}} href="https://guzzardo.netlify.app/">Joseph Guzzardo</a>.</span>
 			<span className={classes.credit}>Photo by <a className={classes.link} href="https://unsplash.com/@gilleslambert?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Gilles Lambert</a> on <a className={classes.link} href="https://unsplash.com/s/photos/plants?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
 		</div>
 		</div>

@@ -58,7 +58,7 @@ const useStyles = makeStyles({
   },
 });
 
-function Signup() {
+function Signup({handleChange}) {
   const classes = useStyles();
   return (
     <>
@@ -69,7 +69,7 @@ function Signup() {
           margin: "auto"
         }}
       >
-        <form className={classes.form}>
+        <form className={classes.form} onChange={handleChange}>
           <Grid container spacing={10}>
             <Grid item xs={12}>
               <Typography className={classes.login} variant="h5">

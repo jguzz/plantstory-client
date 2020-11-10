@@ -1,5 +1,6 @@
+
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 // material ui
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -48,7 +49,14 @@ const useStyles = makeStyles({
   },
 });
 
+
 function Login({ handleChange, handleLoginSubmit }) {
+  
+  let history = useHistory()
+  function handleLoginSubmitWithRedirect(e){
+      handleLoginSubmit(e)
+      history.push("/profile")
+    }
   const classes = useStyles();
   return (
     <>
@@ -62,7 +70,7 @@ function Login({ handleChange, handleLoginSubmit }) {
         <form
           className={classes.form}
           onChange={handleChange}
-          onSubmit={(e) => handleLoginSubmit(e)}
+          onSubmit={(e) => handleLoginSubmitWithRedirect(e)}
         >
           <Grid container spacing={10}>
             <Grid item xs={12}>
@@ -91,9 +99,7 @@ function Login({ handleChange, handleLoginSubmit }) {
             <Grid item xs={12} className={classes.signInGrid}>
               <Link to="/mainfeed">
                 <Button
-                  component={Link}
-                  to="/mainfeed"
-                  onClick={(e) => handleLoginSubmit(e)}
+                  onClick={(e) => handleLoginSubmitWithRedirect(e)}
                   className={classes.button}
                   size="large"
                   Submit
