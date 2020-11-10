@@ -65,6 +65,8 @@ function Login({ handleChange, handleLoginSubmit }) {
           flexDirection: "column",
           alignContent: "center",
           margin: "auto",
+          paddingTop: '30px',
+          height: '90vh'
         }}
       >
         <form
