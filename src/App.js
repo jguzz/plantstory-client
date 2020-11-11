@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Link } from "react-router-dom";
 import { DirectUpload } from "activestorage";
 // ==== Components ====
 import Login from "./components/auth/Login";
@@ -45,6 +45,11 @@ class App extends React.Component {
     userStories: [],
     userCollections: [],
     userPosts: [],
+    // sign up
+    name: '',
+    email: '',
+    passwordConfirm: '',
+
     // ==== Create ====
     // Collection
     collectionName: "",
@@ -68,10 +73,13 @@ class App extends React.Component {
     activeStep: 0,
   };
 
+  
   // ==== Fetching Methods ====
   componentDidMount() {
+    this.checkLogIn();
     this.fetchAll();
   }
+  
   // Post helper method
   post = (url, data) => {
     return fetch(url, {
@@ -97,8 +105,8 @@ class App extends React.Component {
   // Fetch helper method
   fetch = (url, name) => {
     fetch(url)
-      .then((res) => res.json())
-      .then((data) => this.setState({ [name]: data }));
+    .then((res) => res.json())
+    .then((data) => this.setState({ [name]: data }));
   };
   // Delete helper method
   delete =(url, id) => {
@@ -110,7 +118,7 @@ class App extends React.Component {
       },
       body: JSON.stringify(id),
     })
-      .then((res) => res.json())
+    .then((res) => res.json())
   }
   // Fetches all date from api, and seeds it to state.
   fetchAll = () => {
@@ -122,19 +130,19 @@ class App extends React.Component {
     this.fetch(COLLECTION_URL, "collections");
     this.fetch(COMMENT_URL, "comments")
   };
-
-
+  
+  
   // ========== FORM ===========
   // Handle change helper method
   handleChange = (e) => {
     // Checks if the event is for photo uploads
     e.target.name === "photo"
-      ? this.setState({
-          [e.target.name]: e.target.files[0],
-        })
-      : this.setState({
-          [e.target.name]: e.target.value,
-        });
+    ? this.setState({
+      [e.target.name]: e.target.files[0],
+    })
+    : this.setState({
+      [e.target.name]: e.target.value,
+    });
   };
   // Handle submit helper method
   handleLoginSubmit = (e) => {
@@ -145,7 +153,7 @@ class App extends React.Component {
     };
     this.post(LOGIN_URL, user).then((data) => this.setCurrentUser(data));
   };
-
+  
   // ==== Auth ====
   // Sets the current users info, data and avatar
   setCurrentUser = (data) => {
@@ -156,7 +164,17 @@ class App extends React.Component {
       },
       () => this.setUserData()
     );
+    localStorage.setItem('user', JSON.stringify(data))
   };
+
+  checkLogIn = () => {
+    const user = JSON.parse(localStorage.getItem('user'))
+    if (user){
+      this.setState({currentUser: user.user, currentAvatar: user.avatar})
+    } 
+    
+  }
+
   // Sets users collections, stories, and posts
   setUserData = () => {
     const userCollections = this.state.collections.filter(
@@ -177,6 +195,29 @@ class App extends React.Component {
         userPosts: userPosts,
       });
   };
+    // Sets sign up form to state.currentUser
+    handleSignUp = (e) => {
+      e.preventDefault();
+      if (this.state.password === this.state.validatePassword) {
+        this.setState(
+          {
+            currentUser: {
+              username: this.state.username,
+              password: this.state.password,
+              age: this.state.age,
+              img: this.state.img,
+              name: this.state.name,
+              loggedIn: true,
+            },
+          },
+          () => this.postUser(this.state.currentUser)
+        );
+      } else {
+        alert("Passwords do not match :(");
+      }
+    };
+
+    
   getStories = () => {
     // const {stories, posts, collections} = this.state 
     // const idk = stories.filter(story=>  posts.filter(post => post.story_id === story.id))
@@ -361,7 +402,7 @@ class App extends React.Component {
               </>
             )}
           />
-          <Route path="/signup" render={() => <><Navbar handleSearchChange={this.handleSearchChange} /><Signup /></>} />
+          <Route path="/signup" render={() => <><Navbar handleSearchChange={this.handleSearchChange} /><Signup handleChange={this.handleChange} /></>} />
           <Route path="/newPost" render={() => <><Navbar handleSearchChange={this.handleSearchChange} /><NewPost /></>} />
           <Route
             path="/create"

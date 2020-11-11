@@ -9,7 +9,8 @@ import Typography from '@material-ui/core/Typography'
 
 const useStyles = makeStyles((theme) => ({
   gridContainer: {
-    width: '100%'
+    width: '100%',
+    paddingTop: '30px'
   }
 }))
 
@@ -29,16 +30,8 @@ function MainFeed({
   const classes = useStyles();
   return (
     <>
-    {/* <div className={classes.headingContainer}>
-    <Typography className={classes.heading} variant='h4'>
-      MainFeed
-    </Typography>
-    </div> */}
       <Grid spacing={4} className={classes.gridContainer}direction="column" justify="space-between"  alignContent="center" container>
         {stories.map((story) => (
-     
-
-          
             <Story story={story} handleNext={handleNext} handleBack={handleBack} activeStep={activeStep}
               currentUser={currentUser}
               handleChange={handleChange}
@@ -51,8 +44,7 @@ function MainFeed({
               likes={likes}
               {...story}
               posts={posts}
-              />
-          
+              />     
         ))}
         
       </Grid>
