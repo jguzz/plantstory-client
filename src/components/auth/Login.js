@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
 // material ui
@@ -6,11 +5,17 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 
 const useStyles = makeStyles({
+  container: {
+    flexDirection: "column",
+    alignContent: "center",
+    margin: "auto",
+    paddingTop: '30px',
+    height: '90vh',
+  },
   form: {
     flexGrow: 1,
     minHeight: "30em",
@@ -51,58 +56,50 @@ const useStyles = makeStyles({
 
 
 function Login({ handleChange, handleLoginSubmit }) {
-  
   let history = useHistory()
+  // Submits and redirects to users profile.
   function handleLoginSubmitWithRedirect(e){
-      handleLoginSubmit(e)
-      history.push("/profile")
-    }
-  const classes = useStyles();
+    handleLoginSubmit(e)
+    history.push("/profile")
+  }
+  const style = useStyles();
   return (
     <>
-      <Container
-        style={{
-          flexDirection: "column",
-          alignContent: "center",
-          margin: "auto",
-          paddingTop: '30px',
-          height: '90vh'
-        }}
-      >
+      <Container className={style.container}>
         <form
-          className={classes.form}
+          className={style.form}
           onChange={handleChange}
           onSubmit={(e) => handleLoginSubmitWithRedirect(e)}
         >
           <Grid container spacing={10}>
             <Grid item xs={12}>
-              <Typography className={classes.login} variant="h5">
+              <Typography className={style.login} variant="h5">
                 Login
               </Typography>
             </Grid>
 
-            <Grid item className={classes.gridItem} xs={12}>
+            <Grid item className={style.gridItem} xs={12}>
               <TextField
-                className={classes.textField}
+                className={style.textField}
                 label="username"
                 name="username"
                 type="text"
               />
             </Grid>
-            <Grid item className={classes.gridItem} xs={12}>
+            <Grid item className={style.gridItem} xs={12}>
               <TextField
-                className={classes.textField}
+                className={style.textField}
                 label="password"
                 name="password"
                 type="text"
               />
             </Grid>
 
-            <Grid item xs={12} className={classes.signInGrid}>
+            <Grid item xs={12} className={style.signInGrid}>
               <Link to="/mainfeed">
                 <Button
                   onClick={(e) => handleLoginSubmitWithRedirect(e)}
-                  className={classes.button}
+                  className={style.button}
                   size="large"
                   Submit
                 >

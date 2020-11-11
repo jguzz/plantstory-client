@@ -76,8 +76,10 @@ class App extends React.Component {
   
   // ==== Fetching Methods ====
   componentDidMount() {
+    this.checkLogIn();
     this.fetchAll();
   }
+  
   // Post helper method
   post = (url, data) => {
     return fetch(url, {
@@ -162,7 +164,17 @@ class App extends React.Component {
       },
       () => this.setUserData()
     );
+    localStorage.setItem('user', JSON.stringify(data))
   };
+
+  checkLogIn = () => {
+    const user = JSON.parse(localStorage.getItem('user'))
+    if (user){
+      this.setState({currentUser: user.user, currentAvatar: user.avatar})
+    } 
+    
+  }
+
   // Sets users collections, stories, and posts
   setUserData = () => {
     const userCollections = this.state.collections.filter(
