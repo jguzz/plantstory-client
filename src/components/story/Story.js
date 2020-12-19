@@ -19,7 +19,8 @@ import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 
-const BASE_URL = "https://pure-springs-07705.herokuapp.com/"
+// const BASE_URL = "https://pure-springs-07705.herokuapp.com/"
+const BASE_URL = "http://localhost:3000";
 
 function storyPosts(posts, id) {
   return posts ? posts.filter((post) => post.post.story_id === id) : [];

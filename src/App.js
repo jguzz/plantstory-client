@@ -17,7 +17,8 @@ import Welcome from "./components/home/Welcome"
 import Paper from '@material-ui/core/Paper'
 
 // Fetch URLS  
-const BASE_URL = "https://pure-springs-07705.herokuapp.com/";
+// const BASE_URL = "https://pure-springs-07705.herokuapp.com/";
+const BASE_URL = "http://localhost:3000";
 const USER_URL = `${BASE_URL}/users`;
 const PLANT_URL = `${BASE_URL}/plants`;
 const LIKE_URL = `${BASE_URL}/likes`;
